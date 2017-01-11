@@ -1,3 +1,8 @@
+" Pathogen load
+filetype off
+execute pathogen#infect()
+execute pathogen#helptags()
+
 """""""""""""""""""""
 "" Common Settings 
 """""""""""""""""""""
@@ -71,9 +76,7 @@ set ffs=unix,dos,mac
 syntax on
 
 " Enable 256 colors palette
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
+set t_Co=256
 
 try
     colorscheme monokain
@@ -132,7 +135,7 @@ map <C-e> :NERDTreeToggle<CR>
 " Airline
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
-let g:airline_theme='base16'
+let g:airline_theme='cool'
 
 "Syntatic
 set statusline+=%#warningmsg#
@@ -141,13 +144,9 @@ set statusline+=%*
 
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
-let g:syntastic_enable_balloons = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['python']
 
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_json_checkers = ['jsonlint']
@@ -158,7 +157,7 @@ let g:ctrlp_max_depth=40
 let g:ctrlp_show_hidden=1
 let g:ctrlp_working_path_mode = 0
 
-set wildignore+=*.pyc,node_modules/*
+set wildignore+=*.pyc,node_modules,bower_components
 
 
 let &colorcolumn=81
