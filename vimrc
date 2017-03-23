@@ -173,3 +173,6 @@ augroup json_autocmd
   autocmd FileType json set expandtab
   autocmd FileType json set foldmethod=syntax
 augroup END
+
+" Abreviations
+iab pdb import pdb;pdb.set_trace()<Esc>
