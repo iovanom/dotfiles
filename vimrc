@@ -172,7 +172,6 @@ augroup json_autocmd
   autocmd FileType json set textwidth=78 shiftwidth=2
   autocmd FileType json set softtabstop=2 tabstop=8
   autocmd FileType json set expandtab
-  autocmd FileType json set foldmethod=syntax
 augroup END
 
 " Abreviations
@@ -181,3 +180,14 @@ iab pdb import pdb;pdb.set_trace()<Esc>
 " python-mode
 let g:pymode_python = 'python3'
 
+" complete me
+let g:ycm_server_python_interpreter='python'
+
+" eclim
+set guioptions-=m " turn off menu bar
+set guioptions-=T " turn off toolbar
+set guioptions-=L " turn off left scrollbar
+set guioptions-=l
+
+let g:EclimCompletionMethod = 'omnifunc'
+set completeopt-=preview
