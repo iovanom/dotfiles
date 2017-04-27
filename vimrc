@@ -37,6 +37,7 @@ let g:mapleader = ","
 noremap <Leader>n :bnext<CR>
 noremap <Leader>o :bprevious<CR>
 noremap <Leader>x :bd<CR>
+noremap <Leader>r :!go run %<CR>
 
 """"""""""""""""""""""
 
@@ -114,6 +115,7 @@ set tabstop=4
 
 set smarttab
 
+
 " Linebreak on 500 characters
 set lbr
 set tw=120
@@ -162,5 +164,4 @@ set wildignore+=*.pyc,node_modules,bower_components
 
 let &colorcolumn=81
 highlight ColorColumn ctermbg=234
-
 
