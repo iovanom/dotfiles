@@ -148,7 +148,8 @@ let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['python']
+let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_python_checkers = ['python']
 
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_json_checkers = ['jsonlint']
@@ -165,3 +166,30 @@ set wildignore+=*.pyc,node_modules,bower_components
 let &colorcolumn=81
 highlight ColorColumn ctermbg=234
 
+" vim-json
+augroup json_autocmd
+  autocmd!
+  autocmd FileType json set autoindent
+  autocmd FileType json set formatoptions=tcq2l
+  autocmd FileType json set textwidth=78 shiftwidth=2
+  autocmd FileType json set softtabstop=2 tabstop=8
+  autocmd FileType json set expandtab
+augroup END
+
+" Abreviations
+iab pdb import pdb;pdb.set_trace()<Esc>
+
+" python-mode
+let g:pymode_python = 'python3'
+
+" complete me
+let g:ycm_server_python_interpreter='python'
+
+" eclim
+set guioptions-=m " turn off menu bar
+set guioptions-=T " turn off toolbar
+set guioptions-=L " turn off left scrollbar
+set guioptions-=l
+
+let g:EclimCompletionMethod = 'omnifunc'
+set completeopt-=preview
