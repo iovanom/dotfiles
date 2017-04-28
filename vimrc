@@ -37,6 +37,7 @@ let g:mapleader = ","
 noremap <Leader>n :bnext<CR>
 noremap <Leader>o :bprevious<CR>
 noremap <Leader>x :bd<CR>
+noremap <Leader>r :!go run %<CR>
 
 """"""""""""""""""""""
 
@@ -113,6 +114,7 @@ set shiftwidth=4
 set tabstop=4
 
 set smarttab
+
 
 " Linebreak on 500 characters
 set lbr
