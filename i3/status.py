@@ -62,12 +62,12 @@ status.register("runwatch",
 #
 # Note: the network module requires PyPI package netifaces
 status.register("network",
-    interface="eth0",
+    interface="enp8s0",
     format_up="{v4cidr}",)
 
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
-    interface="wlan0",
+    interface="wlp9s0",
     format_up="{essid} {quality:03.0f}%",)
 
 # Shows disk usage of /
