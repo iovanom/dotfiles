@@ -1,0 +1,14 @@
+CORE_PWD=/home/ivan/work/core
+bind -f $CORE_PWD/scripts/bash_lib/inputrc.inc.sh
+
+# g_bash_lib
+export G_BASH_LIB=/home/ivan/work/core/scripts/bash_lib
+#MAC_BASH_LIB
+
+. $CORE_PWD/scripts/bash_lib/bashrc.inc.sh
+
+#END_MAC_BASH_LIB
+#MAC_BASH_LIB_END
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+set -o emacs

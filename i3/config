@@ -45,7 +45,8 @@ bindsym $mod+Shift+q kill
 #
 #
 
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id "rofi -modi window,run,drun,ssh -show run"
+bindsym $mod+p exec --no-startup-id "find /home/ivan/programs -type f -executable -print | rofi -dmenu | bash"
 
 # vim keys
 set $left   h

@@ -1,7 +1,45 @@
-" Pathogen load
-filetype off
-execute pathogen#infect()
-execute pathogen#helptags()
+call plug#begin('~/.vim/plugged')
+
+""""""""""""""""""""
+"" Plugins
+""""""""""""""""""""
+
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} 
+
+" Themes
+Plug 'sickill/vim-monokai'
+Plug 'flazz/vim-colorschemes'
+
+" Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes/'
+
+Plug 'vim-syntastic/syntastic'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'tpope/vim-surround'
+
+Plug 'mileszs/ack.vim'
+
+" JavaScript
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
+
+"Go lang
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'nsf/gocode',  { 'for': 'go' }
+
+" Markdown
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
+" Eclim
+Plug 'dansomething/vim-eclim', {'for': 'python'}
+
+
+call plug#end()
+
 
 """""""""""""""""""""
 "" Common Settings 
@@ -16,13 +54,10 @@ set autoread
 set number
 set relativenumber
 
-
 "" Cursor
 set cursorline
 
 set history=500
-
-"""""""""""""""""""""
 
 
 """""""""""""""""""""
@@ -37,9 +72,12 @@ let g:mapleader = ","
 noremap <Leader>n :bnext<CR>
 noremap <Leader>o :bprevious<CR>
 noremap <Leader>x :bd<CR>
-noremap <Leader>r :!go run %<CR>
 
-""""""""""""""""""""""
+"" Splits navigation
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
 
 
 """"""""""""""""""""""
@@ -67,8 +105,6 @@ set encoding=utf8
 " Use Unix as the standart file type
 set ffs=unix,dos,mac
 
-"""""""""""""""""""""""
-
 
 """""""""""""""""""""""
 "" Color and Fonts
@@ -78,16 +114,11 @@ syntax on
 
 " Enable 256 colors palette
 set t_Co=256
-
-try
-    colorscheme monokain
-catch
-endtry
-
+colorscheme monokain
 set background=dark
 
-"""""""""""""""""""""""""
-
+let &colorcolumn=81
+highlight ColorColumn ctermbg=234
 
 """""""""""""""""""""""""
 "" Files, backup and undo
@@ -100,8 +131,6 @@ set noswapfile
 " Undo files
 set undofile
 set undodir=/home/ivan/.vimundo/
-
-"""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""
@@ -116,30 +145,20 @@ set tabstop=4
 set smarttab
 
 
-" Linebreak on 500 characters
-set lbr
-set tw=120
-set ai "Auto indent
-set si "Smart indent
-set wrap "Wrap linest
-
-"""""""""""""""""""""""""
-
-
 """""""""""""""""""""""""
 " Plugins Settings
 """""""""""""""""""""""""
 
 " NERDTree
 let NERDTreeIgnore=['\.pyc$']
-map <C-e> :NERDTreeToggle<CR>
+nmap <c-e> :NERDTreeToggle <cr>
 
 " Airline
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 let g:airline_theme='cool'
 
-"Syntatic
+" Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -150,46 +169,20 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_python_checkers = ['python']
-
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_json_checkers = ['jsonlint']
 
-"CtrlP
-let g:ctrlp_max_files=0
-let g:ctrlp_max_depth=40
-let g:ctrlp_show_hidden=1
-let g:ctrlp_working_path_mode = 0
+" FZF
+nmap <Leader> t :FZF <cr>
+nmap \ :Buffers <cr>
 
-set wildignore+=*.pyc,node_modules,bower_components
+" Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 
-let &colorcolumn=81
-highlight ColorColumn ctermbg=234
-
-" vim-json
-augroup json_autocmd
-  autocmd!
-  autocmd FileType json set autoindent
-  autocmd FileType json set formatoptions=tcq2l
-  autocmd FileType json set textwidth=78 shiftwidth=2
-  autocmd FileType json set softtabstop=2 tabstop=8
-  autocmd FileType json set expandtab
-augroup END
-
+""""""""""""""""""""""""""""
 " Abreviations
+" """"""""""""""""""""""""""
 iab pdb import pdb;pdb.set_trace()<Esc>
-
-" python-mode
-let g:pymode_python = 'python3'
-
-" complete me
-let g:ycm_server_python_interpreter='python'
-
-" eclim
-set guioptions-=m " turn off menu bar
-set guioptions-=T " turn off toolbar
-set guioptions-=L " turn off left scrollbar
-set guioptions-=l
-
-let g:EclimCompletionMethod = 'omnifunc'
-set completeopt-=preview
