@@ -23,9 +23,24 @@ Plug 'tpope/vim-surround'
 
 Plug 'mileszs/ack.vim'
 
+" Plug 'Shougo/neocomplete.vim'
+
+Plug 'mattn/emmet-vim', {'for': ['html', 'css']}
+
+" Jinja2
+Plug 'glench/vim-jinja2-syntax'
+
+" Git
+Plug 'tpope/vim-fugitive'
+
+" Python
+Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
+
 " JavaScript
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
-Plug 'ternjs/tern_for_vim', {'for': 'javascript'}
+Plug 'ternjs/tern_for_vim', {'for': 'javascript', 'do': 'npm install'}
+Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
 
 "Go lang
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -36,6 +51,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 " Eclim
 Plug 'dansomething/vim-eclim', {'for': 'python'}
+
 
 
 call plug#end()
@@ -60,6 +76,7 @@ set cursorline
 set history=500
 
 
+
 """""""""""""""""""""
 "" Key Maps
 """""""""""""""""""""
@@ -70,8 +87,11 @@ let g:mapleader = ","
 
 "" Bufers keys
 noremap <Leader>n :bnext<CR>
-noremap <Leader>o :bprevious<CR>
+noremap <Leader>p :bprevious<CR>
 noremap <Leader>x :bd<CR>
+
+noremap ]p :cp <cr>
+noremap ]n :cn <cr>
 
 "" Splits navigation
 nmap <silent> <C-k> :wincmd k<CR>
@@ -105,6 +125,17 @@ set encoding=utf8
 " Use Unix as the standart file type
 set ffs=unix,dos,mac
 
+" Cursor types
+if has("autocmd")
+  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  au InsertEnter,InsertChange *
+    \ if v:insertmode == 'i' | 
+    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    \ elseif v:insertmode == 'r' |
+    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    \ endif
+  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+endif
 
 """""""""""""""""""""""
 "" Color and Fonts
@@ -141,9 +172,9 @@ set undodir=/home/ivan/.vimundo/
 set expandtab
 set shiftwidth=4
 set tabstop=4
-
 set smarttab
 
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 
 """""""""""""""""""""""""
 " Plugins Settings
@@ -168,18 +199,42 @@ let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_python_checkers = ['python']
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_python_checkers = ['pep8', 'pyflakes', 'python']
+let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 let g:syntastic_json_checkers = ['jsonlint']
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['go'],'passive_filetypes': ['javascript', 'python'] }
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0 
 
 " FZF
-nmap <Leader> t :FZF <cr>
+nmap <Leader>t :FZF <cr>
 nmap \ :Buffers <cr>
 
 " Ack
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" Competion
+" let g:neocomplete#enable_at_startup = 1
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+set completeopt=longest,menuone
+
+" Pymode
+let g:pymode_folding = 0
+let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
+let g:pymode_lint_cwindow = 0
+
+" Eclim
+let g:EclimPythonValidate = 0
+
+" Go
+let g:go_fmt_command = "goimports"
+let g:go_metalinter_autosave = 0
+let g:go_fmt_fail_silently = 1
+
 
 
 """"""""""""""""""""""""""""
