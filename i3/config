@@ -232,7 +232,7 @@ bindsym $mod+Shift+bracketleft move workspace to output left
 bindsym $mod+Shift+bracketright move workspace to output right
 
 # Change caps-lock to ctrl
-exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp:rwin_toggle,ctrl:nocaps"
+exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp:rctrl_toggle,ctrl:nocaps"
 
 # Variety and feh
 exec exec variety

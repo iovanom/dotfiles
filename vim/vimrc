@@ -24,7 +24,12 @@ Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
 
 " Plug 'Shougo/neocomplete.vim'
+"
 
+" editorconfig
+Plug 'editorconfig/editorconfig-vim'
+
+" Emmet
 Plug 'mattn/emmet-vim', {'for': ['html', 'css']}
 
 " Jinja2
@@ -34,13 +39,20 @@ Plug 'glench/vim-jinja2-syntax'
 Plug 'tpope/vim-fugitive'
 
 " Python
-Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'klen/python-mode', { 'for': 'python', 'do': 'git submodule update --init --recursive' }
 Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
 
 " JavaScript
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'ternjs/tern_for_vim', {'for': 'javascript', 'do': 'npm install'}
 Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
+
+" TypeScript
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'clausreinke/typescript-tools.vim', { 'do': 'npm install', 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
+
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 "Go lang
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -50,8 +62,11 @@ Plug 'nsf/gocode',  { 'for': 'go' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 " Eclim
-Plug 'dansomething/vim-eclim', {'for': 'python'}
+Plug 'dansomething/vim-eclim', { 'for': 'python' }
 
+" PHP
+Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
+Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
 
 
 call plug#end()
@@ -175,6 +190,7 @@ set tabstop=4
 set smarttab
 
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 
 """""""""""""""""""""""""
 " Plugins Settings
@@ -234,7 +250,11 @@ let g:EclimPythonValidate = 0
 let g:go_fmt_command = "goimports"
 let g:go_metalinter_autosave = 0
 let g:go_fmt_fail_silently = 1
+setlocal omnifunc=go#complete#Complete
 
+" PHP
+autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
+let g:phpcomplete_index_composer_command = "composer"
 
 
 """"""""""""""""""""""""""""
