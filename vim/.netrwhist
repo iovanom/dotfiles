@@ -1,10 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/media/ivan/harddrive/work/yocto/poky/meta-raspberrypi'
-let g:netrw_dirhist_2='/etc/dhcp'
-let g:netrw_dirhist_3='/etc/dhcp/ddns-keys'
-let g:netrw_dirhist_4='/etc/dhcp'
-let g:netrw_dirhist_5='/etc/dhcp/dhclient-enter-hooks.d'
-let g:netrw_dirhist_6='/etc/dhcp'
-let g:netrw_dirhist_7='/etc/dhcp/dhclient-enter-hooks.d'
-let g:netrw_dirhist_8='/etc/systemd/network'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/ivan/work/DTelko/svh-client-firmware/sources/meta-sercomm/recipes-core/images'

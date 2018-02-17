@@ -41,6 +41,7 @@ Plug 'tpope/vim-fugitive'
 " Python
 Plug 'klen/python-mode', { 'for': 'python', 'do': 'git submodule update --init --recursive' }
 Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
+Plug 'integralist/vim-mypy', { 'for': 'python' }
 
 " JavaScript
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
@@ -128,8 +129,8 @@ set so=7
 set ruler
 
 " Ignore case when searching
-set ignorecase
-set smartcase
+"set ignorecase
+"set smartcase
 set hlsearch
 
 " Don't redraw while executing macros (goot performance config)
@@ -215,7 +216,7 @@ let g:syntastic_warning_symbol = "⚠"
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_python_checkers = ['pep8', 'pyflakes', 'python']
+let g:syntastic_python_checkers = ['pep8', 'pylint', 'pyflakes', 'python']
 let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
