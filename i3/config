@@ -259,7 +259,7 @@ exec nm-applet
 # Some apps louncher
 # -----------------------------------
 
-set $mode_launcher Launch: [c]hromium [n]autilus [e]clipse net[b]eans
+set $mode_launcher Launch: [c]hromium [n]autilus [e]clipse net[b]eans [p]ostman
 
 bindsym $mod+o mode "$mode_launcher"
 
@@ -269,6 +269,7 @@ mode "$mode_launcher" {
     bindsym n exec nautilus, mode "default"
     bindsym e exec /home/ivan/programs/eclipse/oxygen/eclipse/eclipse, mode "default"
     bindsym b exec /home/ivan/programs/netbeans-8.2/bin/netbeans, mode "default"
+    bindsym p exec /home/ivan/programs/Postman/Postman, mode "default"
 
     bindsym Escape mode "default"
     bindsym Return mode "default"

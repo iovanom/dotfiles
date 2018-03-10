@@ -1,3 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =2
 let g:netrw_dirhist_1='/home/ivan/work/DTelko/svh-client-firmware/sources/meta-sercomm/recipes-core/images'
+let g:netrw_dirhist_2='/home/ivan/work/DTelko/service-radioplayer/docker'

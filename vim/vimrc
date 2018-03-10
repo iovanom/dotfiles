@@ -26,6 +26,9 @@ Plug 'mileszs/ack.vim'
 " Plug 'Shougo/neocomplete.vim'
 "
 
+" NerdCommenter
+Plug 'scrooloose/nerdcommenter'
+
 " editorconfig
 Plug 'editorconfig/editorconfig-vim'
 
@@ -58,6 +61,9 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 "Go lang
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode',  { 'for': 'go' }
+
+"bitbake
+Plug 'kergoth/vim-bitbake'
 
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -167,6 +173,9 @@ set background=dark
 let &colorcolumn=81
 highlight ColorColumn ctermbg=234
 
+let &colorcolumn=121
+highlight ColorColumn ctermbg=234
+
 """""""""""""""""""""""""
 "" Files, backup and undo
 """""""""""""""""""""""""
@@ -243,6 +252,10 @@ set completeopt=longest,menuone
 let g:pymode_folding = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8', 'mccabe']
 let g:pymode_lint_cwindow = 0
+" disable the rope cache
+let g:pymode_rope = 1 
+let g:pymode_rope_lookup_project = 0 
+let g:pymode_rope_complete_on_dot = 0 
 
 " Eclim
 let g:EclimPythonValidate = 0
