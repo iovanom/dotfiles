@@ -255,6 +255,12 @@ bindsym $win+l exec i3lock -t -i /home/ivan/.config/i3/lock.png
 #exec wicd-gtk -t
 exec nm-applet
 
+# FN keys
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
+
 #------------------------------------
 # Some apps louncher
 # -----------------------------------

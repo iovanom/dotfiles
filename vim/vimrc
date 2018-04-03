@@ -69,7 +69,7 @@ Plug 'kergoth/vim-bitbake'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 " Eclim
-Plug 'dansomething/vim-eclim', { 'for': 'python' }
+Plug 'dansomething/vim-eclim', { 'for': ['python', 'java'] }
 
 " PHP
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
