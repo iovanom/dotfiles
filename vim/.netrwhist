@@ -1,4 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/ivan/work/DTelko/skill-timer-python'
-let g:netrw_dirhist_2='/home/ivan/.config/i3'
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/ivan/work/DTelko/skill-e2e-tests'
+let g:netrw_dirhist_2='/home/ivan/work/DTelko'
+let g:netrw_dirhist_3='/home/ivan/work/DTelko/skill-e2e-tests/test'
+let g:netrw_dirhist_4='/home/ivan/work/DTelko/skill-e2e-tests/test/src'
+let g:netrw_dirhist_5='/home/ivan/work/DTelko/skill-e2e-tests/test/src/test'
+let g:netrw_dirhist_6='/home/ivan/work/DTelko/skill-e2e-tests/test/src/test/groovy'
+let g:netrw_dirhist_7='/home/ivan/work/DTelko/skill-e2e-tests/test/src/test/groovy/de'
+let g:netrw_dirhist_8='/home/ivan/work/DTelko/zipkin_traces/results'
