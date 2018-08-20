@@ -228,7 +228,7 @@ client.urgent #C20000 #C20000 #FFFFFF #FFFFFF
 # Exec on Start
 exec --no-startup-id /home/ivan/.screenlayout/work.sh
 #exec --no-startup-id slack
-exec --no-startup-id riot-web
+#exec --no-startup-id riot-web
 exec --no-startup-id shutter
 exec --no-startup-id Telegram
 exec --no-startup-id /home/ivan/programs/mattermost-desktop-3.7.0/mattermost-desktop
