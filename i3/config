@@ -268,6 +268,16 @@ bindsym $win+l exec i3lock -t -i /home/ivan/.config/i3/lock.png
 exec nm-applet
 
 # FN keys
+###
+#  For xbacklight need to add this to /etc/X11/xorg.conf
+#  Section "Device"
+#  ```
+#   Identifier  "Intel Graphics"
+#      Driver      "intel"
+#      Option      "Backlight"  "intel_backlight"
+#   EndSection
+#  ```
+###
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
