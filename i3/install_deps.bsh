@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo apt update
+sudo apt install python3-pip libiw-dev rofi compton shutter feh variety
+
+# install python3 dependencies
+python3 -m pip install -r requirements.pip3
+
