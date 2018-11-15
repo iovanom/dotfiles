@@ -58,6 +58,9 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'clausreinke/typescript-tools.vim', { 'do': 'npm install', 'for': 'typescript' }
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript' }
 
+" Vue.js
+Plug 'posva/vim-vue', { 'for': 'vue' }
+
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 "Go lang
@@ -82,6 +85,10 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 " PHP
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
+
+" emmet
+Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'js', 'vue']}
+
 
 
 call plug#end()
@@ -294,3 +301,4 @@ let g:rustfmt_autosave = 1
 " Abreviations
 " """"""""""""""""""""""""""
 iab pdb import pdb;pdb.set_trace()<Esc>
+iab eslintdis //eslint-disable-next-line<Esc>

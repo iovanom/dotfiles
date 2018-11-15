@@ -234,6 +234,7 @@ exec --no-startup-id Telegram
 exec --no-startup-id /home/ivan/programs/mattermost-desktop-3.7.0/mattermost-desktop
 exec --no-startup-id gnome-keyring-daemon --start
 exec --no-startup-id clipit
+exec --no-startup-id pomodoro-indicator
 
 # compton
 exec --no-startup-id compton --vsync opengl --backend glx --paint-on-overlay
@@ -261,7 +262,7 @@ force_focus_wrapping yes
 
 
 # lock
-bindsym $win+l exec i3lock -t -i /home/ivan/.config/i3/lock.png 
+bindsym $win+l exec shutter -f -n -e -o /tmp/lock.png && i3lock -t -i /tmp/lock.png 
 
 # wifi / networking
 #exec wicd-gtk -t
