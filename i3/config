@@ -14,7 +14,8 @@ set $win Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:System San Francisco Display 8 
+font pango:Noto Mono Regular 8 
+#font pango:System San Francisco Display 8 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -30,6 +31,8 @@ font pango:System San Francisco Display 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+force_focus_wrapping yes
+
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
@@ -43,10 +46,17 @@ bindsym $mod+Shift+q kill
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 #
-#
+
+# gmrun
+bindsym $mod+F2 exec --no-startup-id gmrun
+# start xfce-appfinder
+bindsym $mod+F3 exec --no-startup-id xfce4-appfinder
+
+# start rofi full
+bindsym $mod+F11 exec --no-startup-id rofi -show run -fullscreen -font "Noto Sans 13"
+
 
 bindsym $mod+d exec --no-startup-id "rofi -modi window,run,drun,ssh -show run"
-bindsym $mod+p exec --no-startup-id "find /home/ivan/programs -type f -executable -print | rofi -dmenu | bash"
 
 # vim keys
 set $left   h
@@ -107,6 +117,7 @@ bindsym $mod+a focus parent
 #
 
 set $workspace1 "1: Main"
+set $workspace9 "9: Notes"
 set $workspace10 "10: Chats"
 
 # switch to workspace
@@ -118,7 +129,7 @@ bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
+bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
@@ -130,7 +141,7 @@ bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
 bindsym $mod+Shift+minus move scratchpad
@@ -178,8 +189,23 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        #status_command i3status
-        status_command exec python3 /home/ivan/.config/i3/status.py
+        i3bar_command i3bar -t
+        height 25
+        workspace_buttons yes
+        font pango:Noto Sans 8 
+        tray_padding 2
+        status_command i3status
+        #status_command exec python3 /home/ivan/.config/i3/status.py
+    colors {
+        #background #2F2F2F
+        statusline #eeeeee
+        separator  #666666
+        #                     border  backgr. text
+        focused_workspace     #a9a9a9 #5f676a #eeeeee
+        active_workspace      #a9a9a9 #5f676a #a9a9a9
+        inactive_workspace    #a9a9a9 #222222 #a9a9a9
+        urgent_workspace      #a9a9a9 #d42121 #FFFFFF
+        }
 }
 
 # # Color themes
@@ -229,22 +255,31 @@ client.urgent #C20000 #C20000 #FFFFFF #FFFFFF
 exec --no-startup-id /home/ivan/.screenlayout/work.sh
 #exec --no-startup-id slack
 #exec --no-startup-id riot-web
-exec --no-startup-id shutter
+exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id Telegram
-exec --no-startup-id /home/ivan/programs/mattermost-desktop-3.7.0/mattermost-desktop
+exec --no-startup-id mattermost-desktop
 exec --no-startup-id gnome-keyring-daemon --start
 exec --no-startup-id clipit
-exec --no-startup-id pomodoro-indicator
+
 
 # compton
-exec --no-startup-id compton --vsync opengl --backend glx --paint-on-overlay
+#exec --no-startup-id compton --vsync opengl --backend glx --paint-on-overlay
 
 # move workspace to left and right monitors
 bindsym $mod+Shift+bracketleft move workspace to output left
 bindsym $mod+Shift+bracketright move workspace to output right
+bindsym $mod+Ctrl+Shift+bracketleft move workspace to output up
+bindsym $mod+Ctrl+Shift+bracketright move workspace to output down
+
 
 # Change caps-lock to ctrl
 exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp:rctrl_toggle,ctrl:nocaps"
+
+# autorepeat key off
+exec_always xset r off
+
+# set the click on tuchpad
+exec_always xinput set-prop 13 306 1
 
 # Variety and feh
 exec exec variety
@@ -258,15 +293,61 @@ bindsym $mod+Ctrl+a exec pavucontrol
 # Printscreen
 bindsym Print exec shutter
 
-force_focus_wrapping yes
+
+#Authentication dialog
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Updater
+exec --no-startup-id pamac-tray
+
+# bluetooth
+#exec --no-startup-id blueberry-tray
+
+# network
+exec --no-startup-id nm-applet
+
+# num lock activated
+exec_always --no-startup-id numlockx on
+
+# dropbox
+#exec --no-startup-id dropbox start
+
+# insync
+#exec --no-startup-id insync start
+
+# volume
+#exec --no-startup-id pasystray
+exec --no-startup-id volumeicon
+
+# xfce-appfinder
+bindsym control+$win+a exec --no-startup-id xfce4-appfinder
+
+# clipman
+#exec --no-startup-id xfce4-clipman
+
+#Conky
+exec --no-startup-id conky -c ~/.config/i3/system-overview
+
+#Polybar
+#exec_always --no-startup-id ~/.config/polybar/launch.sh &
+#
+
+# xflux (fluxgui)
+exec --no-startup-id fluxgui
+
 
 
 # lock
-bindsym $win+l exec shutter -f -n -e -o /tmp/lock.png && i3lock -t -i /tmp/lock.png 
+bindsym $win+l exec i3lock -t -i ~/.config/i3/lock.png
+bindsym $win+Shift+l exec shutter -f -n -e -o /tmp/lock.png && i3lock -t -i /tmp/lock.png 
 
-# wifi / networking
-#exec wicd-gtk -t
-exec nm-applet
+
+exec --no-startup-id xfce4-power-manager &
+# ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
+# IF xfsettingsd is activated you can not change themes
+#exec --no-startup-id xfsettingsd &
+exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+
 
 # FN keys
 ###
@@ -285,22 +366,26 @@ bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master 5%-
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
+#settings
+bindsym control+$mod+m exec --no-startup-id xfce4-settings-manager
 
 #------------------------------------
 # Some apps louncher
 # -----------------------------------
 
-set $mode_launcher Launch: [c]hromium [n]autilus [e]clipse net[b]eans [p]ostman
+set $mode_launcher Launch: [c]hromium [t]hunar [n]autilus [e]clipse net[b]eans [p]ostman
 
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
 
-    bindsym c exec chromium-browser, mode "default"
+    # bindsym c exec chromium, mode "default"
+    bindsym c exec google-chrome-unstable, mode "default"
     bindsym n exec nautilus, mode "default"
     bindsym e exec /home/ivan/programs/eclipse/oxygen/eclipse/eclipse, mode "default"
     bindsym b exec /home/ivan/programs/netbeans-8.2/bin/netbeans --jdkhome $JAVA_HOME, mode "default"
     bindsym p exec /home/ivan/programs/Postman/Postman, mode "default"
+    bindsym t exec thunar, mode "default"
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
@@ -316,9 +401,6 @@ mode "$mode_launcher" {
 set $mode_system System: (l) - lock | (s) - suspend | (h) - hibernate | (r) reboot | (Shift+s) - shutdown
 
 mode "$mode_system" {
-
-}
-mode "$mode_system" {
     bindsym l exec --no-startup-id ~/.config/i3/i3exit lock, mode "default"
     bindsym e exec --no-startup-id ~/.config/i3/i3exit logout, mode "default"
     bindsym s exec --no-startup-id ~/.config/i3/i3exit suspend, mode "default"
@@ -330,15 +412,61 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+control+s mode "$mode_system"
 
 #------------------------------------
 
 # windows specs
+##   floating or tiled  ##
 for_window [window_role="pop-up"] floating enable
 for_window [class="Keepassx"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Shutter"] floating enable
-new_window pixel 1
+for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="Bleachbit"] floating disable
+for_window [class="Blueberry.py"] floating enable
+for_window [class="Brasero"] floating disable
+for_window [class="Galculator"] floating enable
+for_window [class="Gnome-disks"] floating disable
+for_window [class="^Gnome-font-viewer$"] floating enable
+for_window [class="^Gpick$"] floating enable
+for_window [class="Hexchat"] floating disable
+for_window [class="Imagewriter"] floating enable
+for_window [class="Font-manager"] floating enable
+#for_window [class="qt5ct|Lxappearance] floating enable
+for_window [class="Nitrogen"] floating disable
+for_window [class="Pavucontrol"] floating disable
+for_window [class="Peek"] floating enable
+for_window [class="^Skype$"] floating enable
+for_window [class="^Spotify$"] floating disable
+for_window [class="System-config-printer.py"] floating enable
+for_window [class="Unetbootin.elf"] floating enable
+for_window [class="Usb-creator-gtk"] floating enable
+for_window [class="^Vlc$"] floating disable
+for_window [class="Wine"] floating disable
+for_window [class="Xfburn"] floating disable
+for_window [class="Xfce4-appfinder"] floating enable
+for_window [class="Xfce4-settings-manager"] floating disable
+for_window [class="Xfce4-taskmanager"] floating enable
 
+#for_window [instance="gimp"] floating disable
+for_window [instance="script-fu"] border normal
+for_window [instance="variety"] floating disable
+for_window [instance="hangouts"] floating disable
+
+for_window [title="Copying"] floating enable
+for_window [title="Deleting"] floating enable
+for_window [title="Moving"] floating enable
+for_window [title="^Terminator Preferences$"] floating enable
+
+#for_window [window_role="^gimp-toolbox-color-dialog$"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="^Preferences$"] floating enable
+for_window [window_role="setup"] floating enable
+
+for_window [class="Gnome-terminal"] focus
+for_window [class="Termite"] focus
+for_window [class="Terminator"] focus
+
+new_window pixel 1
 

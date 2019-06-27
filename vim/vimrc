@@ -23,6 +23,8 @@ Plug 'tpope/vim-surround'
 
 Plug 'mileszs/ack.vim'
 
+Plug 'coala/coala-vim'
+
 " Plug 'Shougo/neocomplete.vim'
 "
 "
@@ -41,9 +43,10 @@ Plug 'glench/vim-jinja2-syntax'
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " Python
-Plug 'klen/python-mode', { 'for': 'python', 'do': 'git submodule update --init --recursive' }
+"Plug 'klen/python-mode', { 'for': 'python', 'do': 'git submodule update --init --recursive' }
 Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
 Plug 'integralist/vim-mypy', { 'for': 'python' }
 " Plug 'coala/coala-vim', { 'for': 'python' }
@@ -247,7 +250,7 @@ let g:syntastic_go_checkers = ['go', 'golint', 'errcheck']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 let g:syntastic_json_checkers = ['jsonlint']
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['go'],'passive_filetypes': ['javascript', 'python'] }
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'], 'passive_filetypes': ['javascript', 'python'] }
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0 
 
@@ -296,9 +299,12 @@ let g:phpcomplete_index_composer_command = "composer"
 
 " Rust
 let g:rustfmt_autosave = 1
-
 """"""""""""""""""""""""""""
 " Abreviations
 " """"""""""""""""""""""""""
 iab pdb import pdb;pdb.set_trace()<Esc>
 iab eslintdis //eslint-disable-next-line<Esc>
+
+"" Copy/Paste to clipboard
+vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
+noremap <C-v> :r !xclip -o -sel -c<CR><CR>

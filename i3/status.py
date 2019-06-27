@@ -67,7 +67,7 @@ status.register("network",
 
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
-    interface="wlp9s0",
+    interface="wlp5s0",
     format_up="{essid} {quality:03.0f}%",)
 
 # Shows disk usage of /

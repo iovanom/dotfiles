@@ -1,4 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/home/ivan/work/DTelko/service-radioplayer/src'
 let g:netrw_dirhist_2='/media/sf_work/autowork'
+let g:netrw_dirhist_3='/home/ivan/dotfiles/i3'
+let g:netrw_dirhist_4='/home/ivan/work/address-book'
+let g:netrw_dirhist_5='/home/ivan/work'
+let g:netrw_dirhist_6='/home/ivan/work/DTelko/smarthub-simple-number-lookup'
+let g:netrw_dirhist_7='/home/ivan/exercism/java/hello-world/src/main/java'
+let g:netrw_dirhist_8='/home/ivan/work/DTelko/skill-alexa-python/tests'
