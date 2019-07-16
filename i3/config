@@ -279,7 +279,8 @@ exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp
 exec_always xset r off
 
 # set the click on tuchpad
-exec_always xinput set-prop 13 306 1
+exec_always xinput set-prop 'Synaptics TM3383-002' 307 1
+exec_always xinput set-prop 'Synaptics TM3383-002' 306 1
 
 # Variety and feh
 exec exec variety
