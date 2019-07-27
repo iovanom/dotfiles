@@ -59,6 +59,12 @@ Plug 'jelera/vim-javascript-syntax', {'for': 'javascript'}
 " CoffeeScript
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
+" Dart
+Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
+
+" !!! Language Server Protocol plugin
+Plug 'natebosch/vim-lsc'
+
 " TypeScript
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'clausreinke/typescript-tools.vim', { 'do': 'npm install', 'for': 'typescript' }
@@ -268,7 +274,7 @@ endif
 
 " Competion
 " let g:neocomplete#enable_at_startup = 1
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 set completeopt=longest,menuone
 
 " Pymode
@@ -294,7 +300,7 @@ let g:EclimPythonValidate = 0
 let g:go_fmt_command = "goimports"
 let g:go_metalinter_autosave = 0
 let g:go_fmt_fail_silently = 1
-setlocal omnifunc=go#complete#Complete
+autocmd FileType go setlocal omnifunc=go#complete#Complete
 
 " PHP
 autocmd  FileType  php setlocal omnifunc=phpcomplete_extended#CompletePHP
@@ -302,6 +308,10 @@ let g:phpcomplete_index_composer_command = "composer"
 
 " Rust
 let g:rustfmt_autosave = 1
+
+" Dart
+autocmd FileType dart setlocal omnifunc=dart#complete#Complete
+
 """"""""""""""""""""""""""""
 " Abreviations
 " """"""""""""""""""""""""""
@@ -311,3 +321,9 @@ iab eslintdis //eslint-disable-next-line<Esc>
 "" Copy/Paste to clipboard
 vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
 noremap <C-v> :r !xclip -o -sel -c<CR><CR>
+
+""""""""""""""""""""""""""""""
+" LSP Server Plugin configs
+""""""""""""""""""""""""""""""
+let g:lsc_server_commands = {'dart': '/opt/dart-sdk/bin/dart /opt/dart-sdk/bin/snapshots/analysis_server.dart.snapshot --lsp', 'javascript': 'javascript-typescript-stdio'}
+let g:lsc_auto_map = v:true " Use defaults

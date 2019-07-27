@@ -253,7 +253,7 @@ client.urgent #C20000 #C20000 #FFFFFF #FFFFFF
 
 # Exec on Start
 exec --no-startup-id /home/ivan/.screenlayout/work.sh
-#exec --no-startup-id slack
+exec --no-startup-id slack
 #exec --no-startup-id riot-web
 exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id Telegram
@@ -279,8 +279,7 @@ exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp
 exec_always xset r off
 
 # set the click on tuchpad
-exec_always xinput set-prop 'Synaptics TM3383-002' 307 1
-exec_always xinput set-prop 'Synaptics TM3383-002' 306 1
+exec_always xinput set-prop 'Synaptics TM3383-002' 320 1
 
 # Variety and feh
 exec exec variety
@@ -468,6 +467,7 @@ for_window [window_role="setup"] floating enable
 for_window [class="Gnome-terminal"] focus
 for_window [class="Termite"] focus
 for_window [class="Terminator"] focus
+for_window [title="^Android Emulator -"] floating enable
 
 new_window pixel 1
 
