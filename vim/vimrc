@@ -5,6 +5,7 @@ call plug#begin('~/.vim/plugged')
 """"""""""""""""""""
 
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} 
+Plug 'michaeljsmith/vim-indent-object'
 
 " Themes
 Plug 'sickill/vim-monokai'
@@ -96,7 +97,7 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " PHP
 Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
-Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
+"Plug 'm2mdas/phpcomplete-extended', { 'for': 'php' }
 
 " emmet
 Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'js', 'vue']}
@@ -224,11 +225,13 @@ set undodir=/home/ivan/.vimundo/
 
 " Use spaces instead of tabs
 set expandtab
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set smarttab
 
 autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
+autocmd FileType coffee setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 
 """""""""""""""""""""""""
@@ -311,12 +314,14 @@ let g:rustfmt_autosave = 1
 
 " Dart
 autocmd FileType dart setlocal omnifunc=dart#complete#Complete
+autocmd FileType dart setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 
 """"""""""""""""""""""""""""
 " Abreviations
 " """"""""""""""""""""""""""
 iab pdb import pdb;pdb.set_trace()<Esc>
 iab eslintdis //eslint-disable-next-line<Esc>
+iab jsonstring JSON.stringify(<Esc>
 
 "" Copy/Paste to clipboard
 vnoremap <C-c> :w !xclip -i -sel c<CR><CR>
@@ -325,5 +330,5 @@ noremap <C-v> :r !xclip -o -sel -c<CR><CR>
 """"""""""""""""""""""""""""""
 " LSP Server Plugin configs
 """"""""""""""""""""""""""""""
-let g:lsc_server_commands = {'dart': '/opt/dart-sdk/bin/dart /opt/dart-sdk/bin/snapshots/analysis_server.dart.snapshot --lsp', 'javascript': 'javascript-typescript-stdio'}
+let g:lsc_server_commands = {'dart': '/opt/dart-sdk/bin/dart /opt/dart-sdk/bin/snapshots/analysis_server.dart.snapshot --lsp'}
 let g:lsc_auto_map = v:true " Use defaults

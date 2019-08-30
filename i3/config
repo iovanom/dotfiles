@@ -148,7 +148,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 
-#assign [class="Slack"] $workspace10
+assign [class="Slack"] $workspace10
 assign [class="Riot"] $workspace10
 assign [class="Mattermost"] $workspace10
 assign [class="Telegram"] $workspace10
@@ -257,7 +257,7 @@ exec --no-startup-id slack
 #exec --no-startup-id riot-web
 exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id Telegram
-exec --no-startup-id mattermost-desktop
+#exec --no-startup-id mattermost-desktop
 exec --no-startup-id gnome-keyring-daemon --start
 exec --no-startup-id clipit
 
@@ -279,7 +279,7 @@ exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp
 exec_always xset r off
 
 # set the click on tuchpad
-exec_always xinput set-prop 'Synaptics TM3383-002' 320 1
+#exec_always xinput set-prop 13 322 1
 
 # Variety and feh
 exec exec variety
