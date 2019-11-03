@@ -34,7 +34,9 @@ floating_modifier $mod
 force_focus_wrapping yes
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -252,7 +254,7 @@ client.urgent #C20000 #C20000 #FFFFFF #FFFFFF
 # client.urgent #eb709b #eb709b #ffffff #eb709b
 
 # Exec on Start
-exec --no-startup-id /home/ivan/.screenlayout/work.sh
+exec --no-startup-id /home/ivan/.screenlayout/home.sh
 exec --no-startup-id slack
 #exec --no-startup-id riot-web
 exec --no-startup-id shutter --min_at_startup

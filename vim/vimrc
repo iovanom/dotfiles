@@ -126,6 +126,11 @@ set cursorline
 set history=500
 
 
+"" Hidden chars
+"" Command to show `:set list`
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+" set list
+
 
 """""""""""""""""""""
 "" Key Maps
@@ -178,16 +183,22 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " Cursor types
-if has("autocmd")
-  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-  au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' | 
-    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-    \ elseif v:insertmode == 'r' |
-    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-    \ endif
-  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif
+"if has("autocmd")
+  "au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+  "au InsertEnter,InsertChange *
+    "\ if v:insertmode == 'i' | 
+    "\   silent execute '!echo -ne "\e[6 q"' | redraw! |
+    "\ elseif v:insertmode == 'r' |
+    "\   silent execute '!echo -ne "\e[4 q"' | redraw! |
+    "\ endif
+  "au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+"endif
+highlight Cursor guifg=gray guibg=black
+highlight iCursor guifg=gray guibg=steelblue
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
 
 """""""""""""""""""""""
 "" Color and Fonts

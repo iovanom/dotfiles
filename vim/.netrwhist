@@ -1,3 +1,12 @@
 let g:netrw_dirhistmax  =10
 let g:netrw_dirhistcnt =1
-let g:netrw_dirhist_1='/home/ivan/work'
+let g:netrw_dirhist_1='/home/ivan/retently/app-docker/com.retently.nps-webapp/scripts'
+let g:netrw_dirhist_0='/home/ivan/work/nevadacoinmart/simpletudu/.git'
+let g:netrw_dirhist_9='/home/ivan/work/nevadacoinmart/simpletudu/backend/uploads/5d792cf06371a72574c98b11'
+let g:netrw_dirhist_8='/home/ivan/retently'
+let g:netrw_dirhist_7='/home/ivan/retently/app-docker'
+let g:netrw_dirhist_6='/home/ivan/retently/app-docker/com.retently.nps-webapp'
+let g:netrw_dirhist_5='/home/ivan/dotfiles/i3'
+let g:netrw_dirhist_4='/home/ivan/work/nevadacoinmart/simpletudu/frontend'
+let g:netrw_dirhist_3='/home/ivan/work/nevadacoinmart/simpletudu/.git'
+let g:netrw_dirhist_2='/home/ivan/work/nevadacoinmart/simpletudu/backend'
