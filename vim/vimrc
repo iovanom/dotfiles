@@ -103,6 +103,10 @@ Plug 'Shougo/vimproc.vim', { 'do' : 'make' }
 Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'js', 'vue']}
 
 
+" plantuml
+Plug 'aklt/plantuml-syntax'
+Plug 'scrooloose/vim-slumlord'
+
 
 call plug#end()
 

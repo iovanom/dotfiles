@@ -54,8 +54,11 @@ bindsym $mod+F2 exec --no-startup-id gmrun
 # start xfce-appfinder
 bindsym $mod+F3 exec --no-startup-id xfce4-appfinder
 
+# deepin-screenshot
+bindsym $mod+Shift+p exec --no-startup-id deepin-screenshot
+
 # start rofi full
-bindsym $mod+F11 exec --no-startup-id rofi -show run -fullscreen -font "Noto Sans 13"
+#bindsym $mod+F11 exec --no-startup-id rofi -show run -fullscreen -font "Noto Sans 13"
 
 
 bindsym $mod+d exec --no-startup-id "rofi -modi window,run,drun,ssh -show run"
@@ -191,13 +194,13 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        i3bar_command i3bar -t
+        i3bar_command i3bar
         height 25
         workspace_buttons yes
         font pango:Noto Sans 8 
         tray_padding 2
-        status_command i3status
-        #status_command exec python3 /home/ivan/.config/i3/status.py
+        #status_command /home/ivan/.config/i3/pomodoro-status.sh
+        status_command exec python /home/ivan/.config/i3/status.py
     colors {
         #background #2F2F2F
         statusline #eeeeee
@@ -265,7 +268,7 @@ exec --no-startup-id clipit
 
 
 # compton
-#exec --no-startup-id compton --vsync opengl --backend glx --paint-on-overlay
+exec --no-startup-id compton --vsync=opengl --backend=glx --paint-on-overlay
 
 # move workspace to left and right monitors
 bindsym $mod+Shift+bracketleft move workspace to output left
@@ -337,18 +340,16 @@ exec --no-startup-id conky -c ~/.config/i3/system-overview
 # xflux (fluxgui)
 exec --no-startup-id fluxgui
 
-
-
 # lock
 bindsym $win+l exec i3lock -t -i ~/.config/i3/lock.png
 bindsym $win+Shift+l exec shutter -f -n -e -o /tmp/lock.png && i3lock -t -i /tmp/lock.png 
-
 
 exec --no-startup-id xfce4-power-manager &
 # ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
 # IF xfsettingsd is activated you can not change themes
 #exec --no-startup-id xfsettingsd &
-exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+#exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+exec --no-startup-id /usr/bin/dunst &
 
 
 # FN keys
@@ -370,6 +371,12 @@ bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 #settings
 bindsym control+$mod+m exec --no-startup-id xfce4-settings-manager
+
+# i3-gnome-pomodoro settings
+bindsym $mod+F9 exec "i3-gnome-pomodoro start"
+bindsym $mod+F10 exec "i3-gnome-pomodoro toggle"
+bindsym $mod+F11 exec "i3-gnome-pomodoro skip"
+bindsym $mod+F12 exec "i3-gnome-pomodoro stop"
 
 #------------------------------------
 # Some apps louncher
