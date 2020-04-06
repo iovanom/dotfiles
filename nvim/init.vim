@@ -5,6 +5,7 @@
 call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -22,8 +23,18 @@ Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'crusoexia/vim-javascript-lib', {'for': 'javascript'}
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 
+" vue.js
+"Plug 'posva/vim-vue', { 'for': 'vue' }
+Plug 'leafOfTree/vim-vue-plugin', { 'for': 'vue' }
 
+Plug 'hdima/python-syntax', { 'for': 'python' }
+"Plug 'vim-python/python-syntax', { 'for': 'python' }
+Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
+
+Plug 'vim-syntastic/syntastic'
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 
@@ -55,9 +66,12 @@ set history=500
 let mapleader = ","
 let g:mapleader = ","
 
+"" Marks
+set viminfo='200,f1
+
 "" Bufers keys
 noremap <Leader>n :bnext<CR>
-noremap <Leader>p :bprevious<CR>
+noremap <Leader>m :bprevious<CR>
 noremap <Leader>x :bd<CR>
 
 noremap ]p :cp <cr>
@@ -96,9 +110,12 @@ set shiftwidth=2
 set tabstop=2
 set smarttab
 
+au FileType python set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
+
 " NERDTree
 let NERDTreeIgnore=['\.pyc$']
-nmap <c-e> :NERDTreeToggle <cr>
+"nmap <c-e> :NERDTreeToggle <cr>
+nmap <c-e> :CocCommand explorer<CR>
 
 syntax on
 
@@ -134,16 +151,50 @@ iab pdb import pdb;pdb.set_trace()<Esc>
 iab eslintdis //eslint-disable-next-line<Esc>
 iab jsonstring JSON.stringify(<Esc>
 
+cab adddailynote :e $HOME/notes/daily/`date +\%d.\%m.\%Y`.md<CR>:-1read $HOME/notes/daily/.template<CR>:w<CR>
+
 " Airline
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
 let g:airline_theme='cool'
+
+" folds
+set foldmethod=manual
+set foldlevelstart=99
+autocmd FileType coffee setlocal foldmethod=indent
+
+" " Copy to clipboard
+vnoremap  <leader>y  "+y
+nnoremap  <leader>Y  "+yg_
+nnoremap  <leader>y  "+y
+nnoremap  <leader>yy  "+yy
+
+" " Paste from clipboard
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
+
+" nvim options
+let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog = '/usr/bin/python2'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 
 " COC Settings
 
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
+set noswapfile
 
 " Better display for messages
 set cmdheight=2
@@ -157,6 +208,7 @@ set shortmess+=c
 " always show signcolumns
 set signcolumn=yes
 
+" COC CONFIGS
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -267,3 +319,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+
+" Disable lint from vim-go because of lint in coc-go
+let g:go_highlight_diagnostic_errors = 0
+let g:go_highlight_diagnostic_warnings = 1

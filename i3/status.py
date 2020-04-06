@@ -96,6 +96,6 @@ status.register("mpd",
         "stop": "◾",
     },)
 
-status.register("shell", command="i3-gnome-pomodoro status")
+#status.register("shell", command="i3-gnome-pomodoro status")
 
 status.run()

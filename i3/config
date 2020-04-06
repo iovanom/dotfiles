@@ -35,7 +35,8 @@ force_focus_wrapping yes
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec termite
+#bindsym $mod+Return exec termite
+bindsym $mod+Return exec xfce4-terminal
 
 
 # kill focused window
@@ -122,6 +123,7 @@ bindsym $mod+a focus parent
 #
 
 set $workspace1 "1: Main"
+set $workspace8 "8: Email"
 set $workspace9 "9: Notes"
 set $workspace10 "10: Chats"
 
@@ -133,7 +135,7 @@ bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
+bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
@@ -145,7 +147,7 @@ bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspace10
 
@@ -153,6 +155,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 
+assign [class="Evolution"] $workspace8
 assign [class="Slack"] $workspace10
 assign [class="Riot"] $workspace10
 assign [class="Mattermost"] $workspace10
@@ -173,10 +176,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym $right resize shrink width 10 px or 10 ppt
-        bindsym $up resize grow height 10 px or 10 ppt
-        bindsym $down resize shrink height 10 px or 10 ppt
-        bindsym $left resize grow width 10 px or 10 ppt
+        bindsym $right resize shrink width 5 px or 5 ppt
+        bindsym $up resize grow height 5 px or 5 ppt
+        bindsym $down resize shrink height 5 px or 5 ppt
+        bindsym $left resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Right resize shrink width 10 px or 10 ppt
@@ -201,6 +204,7 @@ bar {
         tray_padding 2
         #status_command /home/ivan/.config/i3/pomodoro-status.sh
         status_command exec python /home/ivan/.config/i3/status.py
+        #status_command py3status
     colors {
         #background #2F2F2F
         statusline #eeeeee
@@ -215,16 +219,16 @@ bar {
 
 # # Color themes
 # Archlinux
-# client.focused #0088CC #0088CC #ffffff #dddddd
-# client.focused_inactive #333333 #333333 #888888 #292d2e
-# client.unfocused #333333 #333333 #888888 #292d2e
-# client.urgent #2f343a #900000 #ffffff #900000c
+ client.focused #0088CC #0088CC #ffffff #dddddd
+ client.focused_inactive #333333 #333333 #888888 #292d2e
+ client.unfocused #333333 #333333 #888888 #292d2e
+ client.urgent #2f343a #900000 #ffffff #900000c
 
 # Lime
-client.focused #4E9C00 #4E9C00 #FFFFFF #FFFFFF
-client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF
-client.unfocused #333333 #333333 #888888 #FFFFFF
-client.urgent #C20000 #C20000 #FFFFFF #FFFFFF
+#client.focused #4E9C00 #4E9C00 #FFFFFF #FFFFFF
+#client.focused_inactive #1B3600 #1B3600 #888888 #FFFFFF
+#client.unfocused #333333 #333333 #888888 #FFFFFF
+#client.urgent #C20000 #C20000 #FFFFFF #FFFFFF
 
 # # Okraits
 # client.focused #888888 #dddddd #222222 #2e9ef4
@@ -257,14 +261,15 @@ client.urgent #C20000 #C20000 #FFFFFF #FFFFFF
 # client.urgent #eb709b #eb709b #ffffff #eb709b
 
 # Exec on Start
-exec --no-startup-id /home/ivan/.screenlayout/home.sh
 exec --no-startup-id slack
+exec --no-startup-id evolution
 #exec --no-startup-id riot-web
-exec --no-startup-id shutter --min_at_startup
+#exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id Telegram
 #exec --no-startup-id mattermost-desktop
 exec --no-startup-id gnome-keyring-daemon --start
 exec --no-startup-id clipit
+
 
 
 # compton
@@ -296,7 +301,7 @@ bindsym $mod+Ctrl+p exec variety -p # previous wallpaper
 bindsym $mod+Ctrl+a exec pavucontrol
 
 # Printscreen
-bindsym Print exec shutter
+bindsym Print exec deepin-screenshot
 
 
 #Authentication dialog
@@ -342,7 +347,7 @@ exec --no-startup-id fluxgui
 
 # lock
 bindsym $win+l exec i3lock -t -i ~/.config/i3/lock.png
-bindsym $win+Shift+l exec shutter -f -n -e -o /tmp/lock.png && i3lock -t -i /tmp/lock.png 
+#bindsym $win+Shift+l exec shutter -f -n -e -o /tmp/lock.png && i3lock -t -i /tmp/lock.png 
 
 exec --no-startup-id xfce4-power-manager &
 # ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
@@ -377,6 +382,26 @@ bindsym $mod+F9 exec "i3-gnome-pomodoro start"
 bindsym $mod+F10 exec "i3-gnome-pomodoro toggle"
 bindsym $mod+F11 exec "i3-gnome-pomodoro skip"
 bindsym $mod+F12 exec "i3-gnome-pomodoro stop"
+
+#------------------------------------
+# screenlayout
+# Some apps louncher
+# -----------------------------------
+# Default one
+exec --no-startup-id /home/ivan/.screenlayout/home.sh
+
+set $mode_screenlayout Launch: [l]enovo [d]ell [m]ulti(default)
+bindsym $mod+F7 mode "$mode_screenlayout"
+mode "$mode_screenlayout" {
+  bindsym l exec /home/ivan/.screenlayout/lenovo.sh
+  bindsym d exec /home/ivan/.screenlayout/dell.sh
+  bindsym m exec /home/ivan/.screenlayout/home.sh
+  
+    bindsym Escape mode "default"
+
+    bindsym Return mode "default"
+}
+
 
 #------------------------------------
 # Some apps louncher
@@ -459,7 +484,6 @@ for_window [class="Xfce4-settings-manager"] floating disable
 for_window [class="Xfce4-taskmanager"] floating enable
 
 #for_window [instance="gimp"] floating disable
-for_window [instance="script-fu"] border normal
 for_window [instance="variety"] floating disable
 for_window [instance="hangouts"] floating disable
 
@@ -477,6 +501,9 @@ for_window [class="Gnome-terminal"] focus
 for_window [class="Termite"] focus
 for_window [class="Terminator"] focus
 for_window [title="^Android Emulator -"] floating enable
+for_window [class="kruler"] floating enable
+for_window [class="pavucontrol"] floating enable
+for_window [class="Pavucontrol"] floating enable
 
-new_window pixel 1
-
+for_window [class="^.*"] border pixel 1
+new_window 1pixel

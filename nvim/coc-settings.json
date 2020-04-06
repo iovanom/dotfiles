@@ -1,0 +1,8 @@
+{
+    "python.formatting.provider": "autopep8",
+    "python.formatting.autopep8Path": "/usr/bin/autopep8",
+    "vetur.validation.script": true,
+    "eslint.run": "onSave",
+    "clangd.enabled": true,
+    "clangd.path": "/usr/bin/clangd"
+}
