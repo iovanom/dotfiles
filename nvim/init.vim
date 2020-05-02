@@ -6,6 +6,7 @@ call plug#begin()
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'michaeljsmith/vim-indent-object'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -24,6 +25,7 @@ Plug 'crusoexia/vim-javascript-lib', {'for': 'javascript'}
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'editorconfig/editorconfig-vim'
 
 " vue.js
 "Plug 'posva/vim-vue', { 'for': 'vue' }
