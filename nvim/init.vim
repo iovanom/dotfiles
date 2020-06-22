@@ -10,9 +10,6 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'} 
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-"Plug 'crusoexia/vim-monokai'
-Plug 'phanviet/vim-monokai-pro'
-Plug 'flazz/vim-colorschemes'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes/'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -35,8 +32,23 @@ Plug 'hdima/python-syntax', { 'for': 'python' }
 "Plug 'vim-python/python-syntax', { 'for': 'python' }
 Plug 'vim-scripts/indentpython.vim', { 'for': 'python' }
 
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
+
+" Color schemes
+Plug 'gruvbox-community/gruvbox'
+"Plug 'flazz/vim-colorschemes'
+"Plug 'crusoexia/vim-monokai'
+Plug 'phanviet/vim-monokai-pro'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'relastle/bluewery.vim'
+Plug 'NLKNguyen/papercolor-theme'
+
+" DB management
+"Plug 'tpope/vim-dadbod'
+"Plug 'kristijanhusak/vim-dadbod-ui'
+
+"Plug 'inkarkat/vim-mark'
 
 call plug#end()
 
@@ -121,10 +133,15 @@ nmap <c-e> :CocCommand explorer<CR>
 
 syntax on
 
-" Enable 256 colors palette
-colorscheme monokain
+" Colors ---->
+"colorscheme monokain
+colorscheme gruvbox
+"colorscheme bluewery-light
+"colorscheme onehalflight
 set background=dark
-"set termguicolors
+set termguicolors
+" <-----------
+" Enable 256 colors palette
 set t_Co=256
 
 "let &colorcolumn=81
@@ -158,12 +175,19 @@ cab adddailynote :e $HOME/notes/daily/`date +\%d.\%m.\%Y`.md<CR>:-1read $HOME/no
 " Airline
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
-let g:airline_theme='cool'
+"let g:airline_theme='cool'
+let g:airline_theme='onehalfdark'
+"let g:airline_theme='onehalflight'
 
 " folds
 set foldmethod=manual
 set foldlevelstart=99
 autocmd FileType coffee setlocal foldmethod=indent
+
+" " Copy current the file path
+nnoremap cp :let @"=expand("%")<cr>
+" " Copy to clipboard the file path
+nnoremap <leader>cp :let @+=expand("%")<cr>
 
 " " Copy to clipboard
 vnoremap  <leader>y  "+y
@@ -185,10 +209,12 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_loc_list_height=3
 
 
 " COC Settings
@@ -320,8 +346,21 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" Search selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 
 " Disable lint from vim-go because of lint in coc-go
 let g:go_highlight_diagnostic_errors = 0
 let g:go_highlight_diagnostic_warnings = 1
+
+" Highlight
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" coc.actions
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@

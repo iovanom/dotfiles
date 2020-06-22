@@ -4,5 +4,6 @@
     "vetur.validation.script": true,
     "eslint.run": "onSave",
     "clangd.enabled": true,
-    "clangd.path": "/usr/bin/clangd"
+    "clangd.path": "/usr/bin/clangd",
+    "eslint.enable": false
 }
