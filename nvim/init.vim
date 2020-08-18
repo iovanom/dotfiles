@@ -12,7 +12,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes/'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
@@ -50,6 +50,12 @@ Plug 'NLKNguyen/papercolor-theme'
 
 "Plug 'inkarkat/vim-mark'
 
+" fzf
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+
+" Snippets
+Plug 'honza/vim-snippets'
+
 call plug#end()
 
 "=====================
@@ -79,6 +85,7 @@ set history=500
 "" Leader Key
 let mapleader = ","
 let g:mapleader = ","
+nnoremap <leader>; ,
 
 "" Marks
 set viminfo='200,f1
@@ -97,8 +104,11 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
-"" Search selected text
 vnoremap // y/<C-R>"<CR>
+
+inoremap jk <ESC>
+inoremap <C-c> <nop>
+
 
 "" Hidden chars
 "" Command to show `:set list`
@@ -124,7 +134,11 @@ set shiftwidth=2
 set tabstop=2
 set smarttab
 
-au FileType python set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
+augroup my_group_for_specific_lang
+  autocmd!
+  autocmd FileType python,php set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
+  autocmd FileType coffee,python,php setlocal foldmethod=indent
+augroup end
 
 " NERDTree
 let NERDTreeIgnore=['\.pyc$']
@@ -143,6 +157,9 @@ set termguicolors
 " <-----------
 " Enable 256 colors palette
 set t_Co=256
+
+hi! Normal ctermbg=NONE guibg=NONE 
+hi! NonText ctermbg=NONE guibg=NONE guifg=NONE ctermfg=NONE 
 
 "let &colorcolumn=81
 "highlight ColorColumn ctermbg=234
@@ -169,7 +186,9 @@ endif
 iab pdb import pdb;pdb.set_trace()<Esc>
 iab eslintdis //eslint-disable-next-line<Esc>
 iab jsonstring JSON.stringify(<Esc>
+iabbrev ssig -- <cr>Ivan Majeru<cr>ivanmajeru@gmail.com
 
+" notes
 cab adddailynote :e $HOME/notes/daily/`date +\%d.\%m.\%Y`.md<CR>:-1read $HOME/notes/daily/.template<CR>:w<CR>
 
 " Airline
@@ -180,9 +199,8 @@ let g:airline_theme='onehalfdark'
 "let g:airline_theme='onehalflight'
 
 " folds
-set foldmethod=manual
+set foldmethod=syntax
 set foldlevelstart=99
-autocmd FileType coffee setlocal foldmethod=indent
 
 " " Copy current the file path
 nnoremap cp :let @"=expand("%")<cr>
@@ -205,9 +223,9 @@ vnoremap <leader>P "+P
 let g:python3_host_prog = '/usr/bin/python3'
 let g:python_host_prog = '/usr/bin/python2'
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 1
@@ -235,6 +253,10 @@ set shortmess+=c
 
 " always show signcolumns
 set signcolumn=yes
+
+" open vimrc/init.vim
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+
 
 " COC CONFIGS
 " Use tab for trigger completion with characters ahead and navigate.
@@ -331,21 +353,21 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <c-space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <c-space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <c-space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <c-space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <c-space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent> <c-space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <c-space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <c-space>p  :<C-u>CocListResume<CR>
 " Search selected text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 

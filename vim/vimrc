@@ -67,7 +67,7 @@ Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'dart-lang/dart-vim-plugin', { 'for': 'dart' }
 
 " !!! Language Server Protocol plugin
-" use now COC instead
+" using now COC instead
 "Plug 'natebosch/vim-lsc'
 
 " TypeScript
@@ -110,6 +110,9 @@ Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'js', 'vue']}
 " plantuml
 Plug 'aklt/plantuml-syntax'
 Plug 'scrooloose/vim-slumlord'
+
+" Snippets
+Plug 'honza/vim-snippets'
 
 
 call plug#end()

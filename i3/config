@@ -36,7 +36,8 @@ force_focus_wrapping yes
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+Return exec termite
-bindsym $mod+Return exec xfce4-terminal
+#bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec alacritty
 
 
 # kill focused window
@@ -275,7 +276,7 @@ exec --no-startup-id clipit
 
 
 # compton
-exec --no-startup-id compton --vsync=opengl --backend=glx --paint-on-overlay
+exec --no-startup-id picom --vsync=opengl --backend=glx
 
 # move workspace to left and right monitors
 bindsym $mod+Shift+bracketleft move workspace to output left
@@ -387,7 +388,6 @@ bindsym $mod+F12 exec "i3-gnome-pomodoro stop"
 
 #------------------------------------
 # screenlayout
-# Some apps louncher
 # -----------------------------------
 # Default one
 exec --no-startup-id /home/ivan/.screenlayout/home.sh
@@ -416,7 +416,7 @@ bindsym $mod+o mode "$mode_launcher"
 mode "$mode_launcher" {
 
     # bindsym c exec chromium, mode "default"
-    bindsym c exec google-chrome-unstable, mode "default"
+    bindsym c exec chromium, mode "default"
     bindsym n exec nautilus, mode "default"
     bindsym e exec /home/ivan/programs/eclipse/oxygen/eclipse/eclipse, mode "default"
     bindsym b exec /home/ivan/programs/netbeans-8.2/bin/netbeans --jdkhome $JAVA_HOME, mode "default"
