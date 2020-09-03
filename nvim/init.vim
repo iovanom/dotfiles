@@ -234,6 +234,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
 let g:syntastic_loc_list_height=3
 
+" mouse use
+"set mouse=a
 
 " COC Settings
 

@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =2
+let g:netrw_dirhist_2='/etc/X11/xorg.conf.d'
 let g:netrw_dirhist_1='/home/ivan/retently/app-docker/docker'
 let g:netrw_dirhist_0='/home/ivan/work'
 let g:netrw_dirhist_9='/home/ivan/retently/app-docker/com.retently.nps-webapp/scripts'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_6='/home/ivan/work/nevadacoinmart/simpletudu/frontend/src'
 let g:netrw_dirhist_5='/home/ivan/work/nevadacoinmart/simpletudu/frontend'
 let g:netrw_dirhist_4='/home/ivan/.config'
 let g:netrw_dirhist_3='/home/ivan/.config/gtk-2.0'
-let g:netrw_dirhist_2='/home/ivan/.config/qt5ct'
