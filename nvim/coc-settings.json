@@ -1,6 +1,7 @@
 {
     "python.formatting.provider": "autopep8",
     "python.formatting.autopep8Path": "/usr/bin/autopep8",
+    "python.venvPath": "/home/ivan/.virtualenvs",
     "python.jediPath": "/usr/lib/python3.8/site-packages/jedi/",
     "python.jediEnabled": false,
     "vetur.validation.script": true,

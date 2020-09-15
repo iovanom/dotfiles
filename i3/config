@@ -14,7 +14,8 @@ set $win Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Noto Mono Regular 8 
+#font pango:Noto Mono Regular 8 
+font pango:RobotoMono Nerd Font Bold 8 
 #font pango:System San Francisco Display 8 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -121,17 +122,17 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
-#
-#
 
-set $workspace1 "1: Main"
-set $workspace8 "8: Email"
-set $workspace9 "9: Notes"
-set $workspace10 "10: Chats"
+set $workspace1 "1:  "
+set $workspace2 "2: "
+set $workspace8 "8: "
+set $workspace9 "9: "
+set $workspace10 "10: "
+set $workspace11 "11: "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
-bindsym $mod+2 workspace 2
+bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
@@ -140,10 +141,11 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
+bindsym $win+1 workspace $workspace11
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
@@ -155,6 +157,10 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
+bindsym $win+F4 [class="Spotify"] scratchpad show
+bindsym $win+F3 [class="Keepassx2"] scratchpad show
+
+default_border pixel
 
 
 assign [class="Evolution"] $workspace8
@@ -179,8 +185,8 @@ mode "resize" {
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
         bindsym $right resize shrink width 5 px or 5 ppt
-        bindsym $up resize grow height 5 px or 5 ppt
-        bindsym $down resize shrink height 5 px or 5 ppt
+        bindsym $down resize grow height 5 px or 5 ppt
+        bindsym $up resize shrink height 5 px or 5 ppt
         bindsym $left resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
@@ -200,10 +206,11 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 bar {
+        #i3bar_command i3bar
         i3bar_command i3bar
         height 25
         workspace_buttons yes
-        font pango:Noto Sans 8 
+        font pango:RobotoMono Nerd Font Bold 8 
         tray_padding 2
         #status_command /home/ivan/.config/i3/pomodoro-status.sh
         status_command exec python /home/ivan/.config/i3/status.py
@@ -272,8 +279,10 @@ exec --no-startup-id Telegram
 #exec --no-startup-id mattermost-desktop
 exec --no-startup-id gnome-keyring-daemon --start
 exec --no-startup-id clipit
-
-
+exec --no-startup-id keepassx2
+exec --no-startup-id blueman-manager
+# I don't know why, but to display normal fonts we need to run this
+exec --no-startup-id bash -c '[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources'
 
 # compton
 exec --no-startup-id picom --vsync=opengl --backend=glx
@@ -286,7 +295,7 @@ bindsym $mod+Ctrl+Shift+bracketright move workspace to output down
 
 
 # Change caps-lock to ctrl
-exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp:rctrl_toggle,ctrl:nocaps"
+exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp:win_space_toggle,ctrl:nocaps"
 
 # autorepeat key off
 exec_always xset r off
@@ -506,6 +515,8 @@ for_window [title="^Android Emulator -"] floating enable
 for_window [class="kruler"] floating enable
 for_window [class="pavucontrol"] floating enable
 for_window [class="Pavucontrol"] floating enable
+
+for_window [class="Keepassx2"] move to scratchpad
 
 for_window [class="^.*"] border pixel 1
 new_window 1pixel
