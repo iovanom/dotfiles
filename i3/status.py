@@ -30,9 +30,9 @@ status.register("battery",
     alert=True,
     alert_percentage=5,
     status={
-        "DIS": "↓",
-        "CHR": "↑",
-        "FULL": "=",
+        "DIS": "",
+        "CHR": "",
+        "FULL": "",
     },)
 
 # This would look like this:
@@ -69,7 +69,18 @@ status.register("network",
 status.register("network",
     interface="wlp5s0",
     format_up="{essid} {quality:03.0f}%",)
-status.register("ping", format=" {ping}ms")
+
+status.register("openvpn",
+                vpn_name="retently",
+                status_command="bash -c 'systemctl show \
+                    openvpn-client@%(vpn_name)s | grep ActiveState=active'",
+                vpn_up_command="systemctl start \
+                    openvpn-client@%(vpn_name)s",
+                vpn_down_command="systemctl stop \
+                    openvpn-client@%(vpn_name)s"
+               )
+
+status.register("ping", format=" {ping}ms")
 
 # Shows disk usage of /
 # Format:
@@ -81,10 +92,10 @@ status.register("disk",
 #status.register("mem_bar")
 status.register("mem", format=" {total_mem} / {used_mem} G",
                 divisor=1024**3)
-# Shows your CPU temperature, if you have a Intel CPU
-status.register("temp",
-    format="{temp:.0f}°C",)
+
 status.register("cpu_usage_graph")
+# Shows your CPU temperature, if you have a Intel CPU
+status.register("temp", format=" {temp:.0f}°C",)
 
 
 # Shows pulseaudio default sink volume
@@ -107,8 +118,8 @@ status.register("pulseaudio",
 
 status.register("spotify",
                 format="{status} {artist} - {title}",
-                status={"paused": "", "playing": ""},
-                format_not_running="  "
+                status={"pause": "", "play": "", "stop": ""},
+                format_no_player="  "
                )
 
 #status.register("shell", command="i3-gnome-pomodoro status")

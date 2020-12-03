@@ -58,8 +58,8 @@ bindsym $mod+F2 exec --no-startup-id gmrun
 bindsym $mod+F3 exec --no-startup-id xfce4-appfinder
 
 # deepin-screenshot
-#bindsym $mod+Shift+p exec --no-startup-id deepin-screen-recorder
-bindsym $mod+Shift+p exec --no-startup-id deepin-screenshot
+bindsym $mod+Shift+p exec --no-startup-id deepin-screen-recorder
+#bindsym $mod+Shift+p exec --no-startup-id deepin-screenshot
 
 # start rofi full
 #bindsym $mod+F11 exec --no-startup-id rofi -show run -fullscreen -font "Noto Sans 13"

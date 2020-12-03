@@ -1,4 +1,4 @@
-i3pystatus
+git+https://github.com/enkore/i3pystatus.git
 colour
 netifaces
 basiciw

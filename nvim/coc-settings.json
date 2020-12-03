@@ -8,5 +8,6 @@
     "eslint.run": "onSave",
     "clangd.enabled": true,
     "clangd.path": "/usr/bin/clangd",
-    "eslint.enable": false
+    "eslint.enable": false,
+    "coc.preferences.formatOnSaveFiletypes": ["rust"]
 }
