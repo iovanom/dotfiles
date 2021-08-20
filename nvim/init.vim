@@ -50,16 +50,55 @@ Plug 'NLKNguyen/papercolor-theme'
 
 "Plug 'inkarkat/vim-mark'
 
-" fzf
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
+"Plug 'puremourning/vimspector'
+
 
 " Snippets
 Plug 'honza/vim-snippets'
+
+" Web APIs
+Plug 'mattn/webapi-vim'
 
 call plug#end()
 
 "=====================
 "
+
+" CocExtensions
+"
+let g:coc_global_extensions = [
+  \'coc-actions',
+  \'coc-angular',
+  \'coc-clangd',
+  \'coc-cspell-dicts',
+  \'coc-css',
+  \'coc-db',
+  \'coc-diagnostic',
+  \'coc-eslint',
+  \'coc-explorer',
+  \'coc-go',
+  \'coc-highlight',
+  \'coc-html',
+  \'coc-java',
+  \'coc-json',
+  \'coc-kite',
+  \'coc-lists',
+  \'coc-markdownlint',
+  \'coc-marketplace',
+  \'coc-phpls',
+  \'coc-pyls',
+  \'coc-restclient',
+  \'coc-rls',
+  \'coc-rust-analyzer',
+  \'coc-snippets',
+  \'coc-spell-checker',
+  \'coc-tabnine',
+  \'coc-toml',
+  \'coc-tsserver',
+  \'coc-vetur',
+  \'coc-yaml'
+\]
+
 set hidden
 
 " Set 7 lines to the cursor
@@ -138,7 +177,11 @@ augroup my_group_for_specific_lang
   autocmd!
   autocmd FileType python,php set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
   autocmd FileType coffee,python,php setlocal foldmethod=indent
+  autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
 augroup end
+
+" Coffeescript
+let coffee_watch_vert = 1
 
 " NERDTree
 let NERDTreeIgnore=['\.pyc$']
@@ -172,6 +215,7 @@ set undofile
 set undodir=/home/ivan/.vimundo/
 
 " FZF
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 nmap <Leader>t :FZF <cr>
 nmap \ :Buffers <cr>
 
@@ -179,6 +223,14 @@ nmap \ :Buffers <cr>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
+" vimspector
+" mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
+" for normal mode - the word under the cursor
+"let g:vimspector_enable_mappings='HUMAN'
+"nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+"xmap <Leader>di <Plug>VimspectorBalloonEval
 
 """"""""""""""""""""""""""""
 " Abreviations
@@ -239,10 +291,9 @@ let g:syntastic_loc_list_height=3
 
 " COC Settings
 
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-set noswapfile
+set backupdir=~/.vimbackup/
+set directory=~/.vimswp/
+set undodir=~/.vimundo/
 
 " Better display for messages
 set cmdheight=2

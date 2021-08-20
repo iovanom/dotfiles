@@ -1,13 +1,37 @@
 {
-    "python.formatting.provider": "autopep8",
-    "python.formatting.autopep8Path": "/usr/bin/autopep8",
-    "python.venvPath": "/home/ivan/.virtualenvs",
-    "python.jediPath": "/usr/lib/python3.8/site-packages/jedi/",
-    "python.jediEnabled": false,
-    "vetur.validation.script": true,
-    "eslint.run": "onSave",
-    "clangd.enabled": true,
-    "clangd.path": "/usr/bin/clangd",
-    "eslint.enable": false,
-    "coc.preferences.formatOnSaveFiletypes": ["rust"]
+  "python.formatting.provider": "autopep8",
+  "python.formatting.autopep8Path": "/usr/bin/autopep8",
+  "vetur.validation.script": true,
+  "eslint.run": "onSave",
+  "eslint.enable": true,
+  "clangd.enabled": true,
+  "clangd.path": "/usr/bin/clangd",
+  "coc.preferences.formatOnSaveFiletypes": ["rust"],
+  "rust-analyzer.checkOnSave.allFeatures": true,
+  "rust-analyzer.diagnostics.disabled": ["unresolved-macro-call"],
+  "rust.clippy_preference": "on",
+  "diagnostic-languageserver.filetypes": {
+    "coffee": "coffeelint"
+  },
+  "diagnostic-languageserver.linters": {
+    "coffeelint": {
+      "command": "coffeelint",
+      "sourceName": "coffeelint",
+      "args": [
+        "--stdin",
+        "--reporter",
+        "raw"
+      ],
+      "parseJson": {
+        "errorsRoot": "stdin",
+        "line": "lineNumber",
+        "message": "${message}\n${context}",
+        "security": "level"
+      },
+      "securities": {
+        "error": "warning",
+        "warning": "warning"
+      }
+    }
+  }
 }

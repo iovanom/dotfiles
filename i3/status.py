@@ -28,7 +28,7 @@ status.register("battery",
     #format="{status}/{consumption:.2f}W {percentage:.2f}% [{percentage_design:.2f}%] {remaining:%E%hh:%Mm}",
     format="{status} {percentage:.2f}% {remaining:%E%hh:%Mm}",
     alert=True,
-    alert_percentage=5,
+    alert_percentage=10,
     status={
         "DIS": "",
         "CHR": "",
@@ -72,12 +72,9 @@ status.register("network",
 
 status.register("openvpn",
                 vpn_name="retently",
-                status_command="bash -c 'systemctl show \
-                    openvpn-client@%(vpn_name)s | grep ActiveState=active'",
-                vpn_up_command="systemctl start \
-                    openvpn-client@%(vpn_name)s",
-                vpn_down_command="systemctl stop \
-                    openvpn-client@%(vpn_name)s"
+                status_command="bash -c 'systemctl show openvpn-client@%(vpn_name)s | grep ActiveState=active'",
+                vpn_up_command="systemctl start openvpn-client@%(vpn_name)s",
+                vpn_down_command="systemctl stop openvpn-client@%(vpn_name)s"
                )
 
 status.register("ping", format=" {ping}ms")
@@ -88,6 +85,12 @@ status.register("ping", format=" {ping}ms")
 status.register("disk",
     path="/",
     format=" {avail}/{total}G",)
+
+"""
+status.register("disk",
+    path="/run/media/ivan/baracuda/",
+    format=" disk {avail}/{total}G",)
+"""
 
 #status.register("mem_bar")
 status.register("mem", format=" {total_mem} / {used_mem} G",
@@ -124,6 +127,9 @@ status.register("spotify",
 
 #status.register("shell", command="i3-gnome-pomodoro status")
 status.register('pomodoro',
+                pomodoro_duration=45*60,
+                break_duration=15*60,
+                long_break_duration=30*60,
                 sound="/home/ivan/Music/analog-watch-alarm_daniel-simion.wav",
                 format=" {current_pomodoro}/{total_pomodoro} {time}")
 

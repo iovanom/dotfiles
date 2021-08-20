@@ -58,14 +58,14 @@ bindsym $mod+F2 exec --no-startup-id gmrun
 bindsym $mod+F3 exec --no-startup-id xfce4-appfinder
 
 # deepin-screenshot
-bindsym $mod+Shift+p exec --no-startup-id deepin-screen-recorder
-#bindsym $mod+Shift+p exec --no-startup-id deepin-screenshot
+#bindsym $mod+Shift+p exec --no-startup-id deepin-screen-recorder
+bindsym $mod+Shift+p exec --no-startup-id deepin-screenshot
 
 # start rofi full
 #bindsym $mod+F11 exec --no-startup-id rofi -show run -fullscreen -font "Noto Sans 13"
 
 
-bindsym $mod+d exec --no-startup-id "rofi -modi window,run,drun,ssh -show run"
+bindsym $mod+d exec --no-startup-id "rofi -modi window,run,drun,ssh -show run -terminal alacritty"
 
 # vim keys
 set $left   h
@@ -208,7 +208,6 @@ bindsym $mod+r mode "resize"
 bar {
         #i3bar_command i3bar
         i3bar_command i3bar
-        height 25
         workspace_buttons yes
         font pango:RobotoMono Nerd Font Bold 8 
         tray_padding 2
@@ -270,6 +269,7 @@ bar {
 # client.unfocused #333333 #333333 #888888 #333333
 # client.urgent #eb709b #eb709b #ffffff #eb709b
 
+
 # Exec on Start
 exec --no-startup-id slack
 exec --no-startup-id evolution
@@ -280,12 +280,16 @@ exec --no-startup-id Telegram
 exec --no-startup-id gnome-keyring-daemon --start
 exec --no-startup-id clipit
 exec --no-startup-id keepassx2
-exec --no-startup-id blueman-manager
 # I don't know why, but to display normal fonts we need to run this
 exec --no-startup-id bash -c '[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources'
 
 # compton
-exec --no-startup-id picom --vsync=opengl --backend=glx
+# exec --no-startup-id picom --vsync=opengl --backend=glx
+#exec --no-startup-id picom --vsync --backend=xr_glx_hybrid
+exec --no-startup-id picom
+
+# idle measured script
+exec --no-startup-id /home/ivan/work/check_idle/bin/checkidle start
 
 # move workspace to left and right monitors
 bindsym $mod+Shift+bracketleft move workspace to output left
@@ -309,6 +313,9 @@ exec_always feh --bg-fill "$WP" 2&gt; /dev/null
 bindsym $mod+Ctrl+n exec variety -n # next wallpaper
 bindsym $mod+Ctrl+p exec variety -p # previous wallpaper
 
+# Translate selected from en to ro
+bindsym Ctrl+$win+t exec /home/ivan/.bin/translate-select
+
 # Audio controll
 bindsym $mod+Ctrl+a exec pavucontrol
 
@@ -323,7 +330,8 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec --no-startup-id pamac-tray
 
 # bluetooth
-#exec --no-startup-id blueberry-tray
+#exec --no-startup-id blueman-tray
+exec --no-startup-id blueberry-tray
 
 # network
 exec --no-startup-id nm-applet
@@ -358,8 +366,9 @@ exec --no-startup-id conky -c ~/.config/i3/system-overview
 exec --no-startup-id fluxgui
 
 # lock
-bindsym $win+l exec i3lock -t -i ~/.config/i3/lock.png
+#bindsym $win+l exec i3lock -t -i ~/.config/i3/lock.png
 #bindsym $win+Shift+l exec shutter -f -n -e -o /tmp/lock.png && i3lock -t -i /tmp/lock.png 
+bindsym $win+l exec i3lock -B 5 -p default
 
 exec --no-startup-id xfce4-power-manager &
 # ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
@@ -399,17 +408,15 @@ bindsym $mod+F12 exec "i3-gnome-pomodoro stop"
 # screenlayout
 # -----------------------------------
 # Default one
-exec --no-startup-id /home/ivan/.screenlayout/home.sh
+exec /home/ivan/.screenlayout/lenovo.sh
 
 set $mode_screenlayout Launch: [l]enovo [d]ell [m]ulti(default)
 bindsym $mod+F7 mode "$mode_screenlayout"
 mode "$mode_screenlayout" {
-  bindsym l exec /home/ivan/.screenlayout/lenovo.sh
-  bindsym d exec /home/ivan/.screenlayout/dell.sh
-  bindsym m exec /home/ivan/.screenlayout/home.sh
-  
+    bindsym l exec /home/ivan/.screenlayout/lenovo.sh
+    bindsym d exec /home/ivan/.screenlayout/dell.sh
+    bindsym m exec /home/ivan/.screenlayout/home.sh
     bindsym Escape mode "default"
-
     bindsym Return mode "default"
 }
 
