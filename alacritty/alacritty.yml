@@ -13,6 +13,8 @@ env:
   TERM: xterm-256color
 
 window:
+
+  opacity: 0.9
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -34,8 +36,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 6
-    y: 6
+    x: 3
+    y: 3
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -109,14 +111,14 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    #family: SauceCodePro Nerd Font
+    #family: SauceCodePro
     #family: CodeNewRoman Nerd Font
-    family: RobotoMono Nerd Font
+    family: RobotoMono
     #family: Hack
-    # family: JetBrains Mono
-    # family: UbuntuMono Nerd Font
+    #family: JetBrains Mono
+    #family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
-    # family: TerminessTTF Nerd Font
+    #family: TerminessTTF Nerd Font
     #family: Mononoki Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -130,7 +132,7 @@ font:
     # value specified for the normal font.
     # family: SauceCodePro Nerd Font
     # family: CodeNewRoman Nerd Font
-    family: RobotoMono Nerd Font
+    family: RobotoMono
     #family: Hack
     # family: JetBrains Mono
     #family: UbuntuMono Nerd Font
@@ -149,7 +151,7 @@ font:
     # value specified for the normal font.
     # family: SauceCodePro Nerd Font Mono
     # family: CodeNewRoman Nerd Font
-    family: RobotoMono Nerd Font
+    family: RobotoMono
     #family: Hack
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
@@ -168,7 +170,7 @@ font:
     # value specified for the normal font.
     # family: SauceCodePro Nerd Font Mono
     # family: CodeNewRoman Nerd Font
-    family: RobotoMono Nerd Font
+    family: RobotoMono
     #family: Hack
     # family: JetBrains Mono
     #family: UbuntuMono Nerd Font
@@ -186,7 +188,7 @@ font:
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   offset:
     x: 0
-    y: 0
+    y: 0 
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
@@ -655,8 +657,7 @@ colors: *monokai_pro
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
-background_opacity: 0.95
+#background_opacity: 0.8
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

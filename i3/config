@@ -425,13 +425,14 @@ mode "$mode_screenlayout" {
 # Some apps louncher
 # -----------------------------------
 
-set $mode_launcher Launch: [c]hromium [t]hunar [n]autilus [e]clipse net[b]eans [p]ostman
+set $mode_launcher Launch: [a]dblink [c]hromium [t]hunar [n]autilus [e]clipse net[b]eans [p]ostman
 
 bindsym $mod+o mode "$mode_launcher"
 
 mode "$mode_launcher" {
 
     # bindsym c exec chromium, mode "default"
+    bindsym a exec /home/ivan/programs/adblink2/adbLink2, mode "default"
     bindsym c exec chromium, mode "default"
     bindsym n exec nautilus, mode "default"
     bindsym e exec /home/ivan/programs/eclipse/oxygen/eclipse/eclipse, mode "default"
@@ -466,6 +467,17 @@ mode "$mode_system" {
 }
 bindsym $mod+control+s mode "$mode_system"
 
+#------------------------------------
+
+#------------------------------------
+# fast_notes block
+#------------------------------------
+
+for_window [ title="fast_notes_window" ] floating enable
+bindsym $win+n exec alacritty -t fast_notes_window -e /home/ivan/.bin/add_note.sh 
+
+#------------------------------------
+# end fast_notes block
 #------------------------------------
 
 # windows specs

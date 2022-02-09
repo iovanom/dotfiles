@@ -5,7 +5,7 @@
   "eslint.run": "onSave",
   "eslint.enable": true,
   "clangd.enabled": true,
-  "clangd.path": "/usr/bin/clangd",
+  "clangd.path": "/home/ivan/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd",
   "coc.preferences.formatOnSaveFiletypes": ["rust"],
   "rust-analyzer.checkOnSave.allFeatures": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-macro-call"],
@@ -31,6 +31,19 @@
       "securities": {
         "error": "warning",
         "warning": "warning"
+      }
+    }
+  },
+  "languageserver": {
+    "ccls": {
+      "enable": false,
+      "command": "ccls",
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+      "rootPatterns": ["compile_flags.txt", ".ccls", "compile_commands.json", ".git/", ".hg/"],
+      "initializationOptions": {
+        "cache": {
+          "directory": "/tmp/ccls"
+        }
       }
     }
   }

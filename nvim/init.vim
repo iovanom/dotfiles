@@ -26,7 +26,7 @@ Plug 'editorconfig/editorconfig-vim'
 
 " vue.js
 "Plug 'posva/vim-vue', { 'for': 'vue' }
-Plug 'leafOfTree/vim-vue-plugin', { 'for': 'vue' }
+"Plug 'leafOfTree/vim-vue-plugin', { 'for': 'vue' }
 
 Plug 'hdima/python-syntax', { 'for': 'python' }
 "Plug 'vim-python/python-syntax', { 'for': 'python' }
@@ -50,7 +50,7 @@ Plug 'NLKNguyen/papercolor-theme'
 
 "Plug 'inkarkat/vim-mark'
 
-"Plug 'puremourning/vimspector'
+Plug 'puremourning/vimspector'
 
 
 " Snippets
@@ -58,6 +58,14 @@ Plug 'honza/vim-snippets'
 
 " Web APIs
 Plug 'mattn/webapi-vim'
+
+" GraphQL Schema
+Plug 'jparise/vim-graphql'
+
+" Plantuml preview
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'aklt/plantuml-syntax'
 
 call plug#end()
 
@@ -86,7 +94,7 @@ let g:coc_global_extensions = [
   \'coc-markdownlint',
   \'coc-marketplace',
   \'coc-phpls',
-  \'coc-pyls',
+  \'coc-pyright',
   \'coc-restclient',
   \'coc-rls',
   \'coc-rust-analyzer',
@@ -142,6 +150,11 @@ nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
+
+nmap <up> :resize -2<CR>
+nmap <down> :resize +2<CR>
+nmap <left> :vert resize -2<CR>
+nmap <right> :vert resize +2<CR>
 
 vnoremap // y/<C-R>"<CR>
 
@@ -225,12 +238,13 @@ if executable('ag')
 endif
 
 " vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
 " mnemonic 'di' = 'debug inspect' (pick your own, if you prefer!)
 " for normal mode - the word under the cursor
-"let g:vimspector_enable_mappings='HUMAN'
-"nmap <Leader>di <Plug>VimspectorBalloonEval
+nmap <Leader>di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
-"xmap <Leader>di <Plug>VimspectorBalloonEval
+xmap <Leader>di <Plug>VimspectorBalloonEval
+set termguicolors
 
 """"""""""""""""""""""""""""
 " Abreviations
@@ -240,8 +254,9 @@ iab eslintdis //eslint-disable-next-line<Esc>
 iab jsonstring JSON.stringify(<Esc>
 iabbrev ssig -- <cr>Ivan Majeru<cr>ivanmajeru@gmail.com
 
+
 " notes
-cab adddailynote :e $HOME/notes/daily/`date +\%d.\%m.\%Y`.md<CR>:-1read $HOME/notes/daily/.template<CR>:w<CR>
+cab adddailynote :e $HOME/notes/daily/`date +\%d.\%m.\%Y`.md<CR>:%!cat $HOME/notes/daily/.template<CR>:%s/\$DATE/\=system('date +\%d.\%m.\%Y')/g"<CR>:w<CR>
 
 " Airline
 let g:airline#extensions#tabline#enabled=1
@@ -373,12 +388,19 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
 xmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap for do codeAction of current line
+" Remap keys for applying codeAction to the current buffer.
 nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Run the Code Lens action on the current line.
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -432,10 +454,4 @@ let g:go_highlight_diagnostic_warnings = 1
 " Highlight
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" coc.actions
-" Remap for do codeAction of selected region
-function! s:cocActionsOpenFromSelected(type) abort
-  execute 'CocCommand actions.open ' . a:type
-endfunction
-xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
-nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+" End coc configs

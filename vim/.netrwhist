@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =6
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/ivan/retently/app-docker/com.retently.nps-webapp/src/services/account'
 let g:netrw_dirhist_6='/home/ivan/work/devrevolution/drivingschool-backend/.firebase'
 let g:netrw_dirhist_5='/home/ivan/retently/tmp/notes'
 let g:netrw_dirhist_4='/home/ivan/retently/app-docker/com.retently.nps-webapp'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_1='/home/ivan/retently/app-docker/com.retently.nps-webapp/sc
 let g:netrw_dirhist_0='/home/ivan/work/nevadacoinmart/simpletudu/.git'
 let g:netrw_dirhist_9='/home/ivan/work/nevadacoinmart/simpletudu/backend/uploads/5d792cf06371a72574c98b11'
 let g:netrw_dirhist_8='/home/ivan/retently'
-let g:netrw_dirhist_7='/home/ivan/retently/app-docker'
