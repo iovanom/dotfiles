@@ -127,8 +127,8 @@ status.register("spotify",
 
 #status.register("shell", command="i3-gnome-pomodoro status")
 status.register('pomodoro',
-                pomodoro_duration=45*60,
-                break_duration=15*60,
+                pomodoro_duration=20*60,
+                break_duration=10*60,
                 long_break_duration=30*60,
                 sound="/home/ivan/Music/analog-watch-alarm_daniel-simion.wav",
                 format=" {current_pomodoro}/{total_pomodoro} {time}")

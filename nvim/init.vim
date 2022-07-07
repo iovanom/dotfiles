@@ -16,9 +16,11 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
-Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'js', 'vue']}
+Plug 'mattn/emmet-vim', { 'for': ['css', 'html', 'js', 'typescriptreact', 'vue', 'handlebars']}
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 Plug 'crusoexia/vim-javascript-lib', {'for': 'javascript'}
+Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'typescriptreact', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
@@ -37,7 +39,7 @@ Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 
 " Color schemes
 Plug 'gruvbox-community/gruvbox'
-"Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 "Plug 'crusoexia/vim-monokai'
 Plug 'phanviet/vim-monokai-pro'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
@@ -66,6 +68,8 @@ Plug 'jparise/vim-graphql'
 Plug 'weirongxu/plantuml-previewer.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'aklt/plantuml-syntax'
+
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -151,10 +155,10 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
-nmap <up> :resize -2<CR>
-nmap <down> :resize +2<CR>
-nmap <left> :vert resize -2<CR>
-nmap <right> :vert resize +2<CR>
+nmap <C-up> :resize -2<CR>
+nmap <C-down> :resize +2<CR>
+nmap <C-left> :vert resize -2<CR>
+nmap <C-right> :vert resize +2<CR>
 
 vnoremap // y/<C-R>"<CR>
 
@@ -208,8 +212,12 @@ syntax on
 colorscheme gruvbox
 "colorscheme bluewery-light
 "colorscheme onehalflight
+
 set background=dark
-set termguicolors
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 " <-----------
 " Enable 256 colors palette
 set t_Co=256
@@ -244,7 +252,6 @@ let g:vimspector_enable_mappings = 'HUMAN'
 nmap <Leader>di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
 xmap <Leader>di <Plug>VimspectorBalloonEval
-set termguicolors
 
 """"""""""""""""""""""""""""
 " Abreviations
@@ -325,6 +332,9 @@ set signcolumn=yes
 " open vimrc/init.vim
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 
+" Prettier
+let g:prettier#autoformat = 0
+" autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 " COC CONFIGS
 " Use tab for trigger completion with characters ahead and navigate.
@@ -371,6 +381,9 @@ function! s:show_documentation()
 endfunction
 
 " Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word

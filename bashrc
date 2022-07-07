@@ -228,7 +228,7 @@ telek () {
 # poetry
 export PATH="$HOME/.poetry/bin:$PATH"
 
-eval "$(starship init bash)"
+#eval "$(starship init bash)"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -244,3 +244,5 @@ export SUDO_ASKPASS="$HOME/.bin/askpass-cmd"
 
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin/
+
+alias daynote='nvim $(date +%F).md'

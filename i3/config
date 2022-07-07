@@ -535,6 +535,9 @@ for_window [class="kruler"] floating enable
 for_window [class="pavucontrol"] floating enable
 for_window [class="Pavucontrol"] floating enable
 
+# dia toolbox window
+for_window [window_role="toolbox_window"] floating enable
+
 for_window [class="Keepassx2"] move to scratchpad
 
 for_window [class="^.*"] border pixel 1

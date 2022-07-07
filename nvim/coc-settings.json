@@ -1,11 +1,16 @@
 {
+  "coc.preferences.colorSupport": true,
+
   "python.formatting.provider": "autopep8",
   "python.formatting.autopep8Path": "/usr/bin/autopep8",
   "vetur.validation.script": true,
+
   "eslint.run": "onSave",
   "eslint.enable": true,
+
   "clangd.enabled": true,
   "clangd.path": "/home/ivan/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd",
+
   "coc.preferences.formatOnSaveFiletypes": ["rust"],
   "rust-analyzer.checkOnSave.allFeatures": true,
   "rust-analyzer.diagnostics.disabled": ["unresolved-macro-call"],
