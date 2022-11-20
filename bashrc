@@ -29,7 +29,7 @@ alias ls='exa'
 alias la='ls -a'
 alias ll='ls -lha'
 alias l='ls' 					
-alias l.="ls -a | egrep '^\.'"      
+alias l.="ls -a | grep -E '^\.'"      
 
 #fix obvious typo's
 alias cd..='cd ..'
@@ -37,7 +37,7 @@ alias pdw="pwd"
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
+alias egrep='grep -E --color=auto'
 alias fgrep='fgrep --color=auto'
 
 #readable output
@@ -142,7 +142,7 @@ source /usr/bin/virtualenvwrapper.sh
 
 
 # exercism command autocompletes (https://exercism.io)
-. /home/ivan/programs/exercism-linux-64bit/shell/exercism_completion.bash
+source /home/ivan/programs/exercism-linux-64bit/shell/exercism_completion.bash
 # alias for exercism
 alias exercism-test="go test -v --bench . --benchmem"
 

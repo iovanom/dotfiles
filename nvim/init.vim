@@ -164,6 +164,7 @@ vnoremap // y/<C-R>"<CR>
 
 inoremap jk <ESC>
 inoremap <C-c> <nop>
+nnoremap <C-f>w :Ag <C-r><C-w><CR>
 
 
 "" Hidden chars
@@ -253,12 +254,23 @@ nmap <Leader>di <Plug>VimspectorBalloonEval
 " for visual mode, the visually selected text
 xmap <Leader>di <Plug>VimspectorBalloonEval
 
+" emmet
+let g:user_emmet_leader_key='<C-Z>'
+
+" coc-snippets
+vnoremap <C-s> <Plug>(coc-convert-snippet)
+
 """"""""""""""""""""""""""""
 " Abreviations
 " """"""""""""""""""""""""""
+func Eatchar(pat)
+  let c = nr2char(getchar(0))
+  return (c =~ a:pat) ? '' : c
+endfunc
+
 iab pdb import pdb;pdb.set_trace()<Esc>
 iab eslintdis //eslint-disable-next-line<Esc>
-iab jsonstring JSON.stringify(<Esc>
+iab jsonstring JSON.stringify(<C-R>=Eatchar('\s')<CR>
 iabbrev ssig -- <cr>Ivan Majeru<cr>ivanmajeru@gmail.com
 
 
@@ -336,14 +348,10 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 let g:prettier#autoformat = 0
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
+
+" =============
 " COC CONFIGS
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" =============
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -352,12 +360,6 @@ endfunction
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -424,8 +426,8 @@ omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
 
 " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+"nmap <silent> <TAB> <Plug>(coc-range-select)
+"xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
@@ -467,4 +469,6 @@ let g:go_highlight_diagnostic_warnings = 1
 " Highlight
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" ================
 " End coc configs
+" ================

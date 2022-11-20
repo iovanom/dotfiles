@@ -18,6 +18,9 @@
   "diagnostic-languageserver.filetypes": {
     "coffee": "coffeelint"
   },
+  "go": {
+    "goplsPath": "/home/ivan/go/bin/gopls"
+  },
   "diagnostic-languageserver.linters": {
     "coffeelint": {
       "command": "coffeelint",

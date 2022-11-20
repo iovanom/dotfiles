@@ -13,7 +13,12 @@ env:
   TERM: xterm-256color
 
 window:
-
+  
+  # GTK theme variant (Linux/BSD only)
+  #
+  # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
+  # Set this to `None` to use the default theme variant.
+  decorations_theme_variant: dark
   opacity: 0.9
   # Window dimensions (changes require restart)
   #
@@ -74,11 +79,6 @@ window:
     # General application class
     general: Alacritty
 
-  # GTK theme variant (Linux/BSD only)
-  #
-  # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
-  # Set this to `None` to use the default theme variant.
-  #gtk_theme_variant: None
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -113,13 +113,15 @@ font:
     #   - (Windows) Consolas
     #family: SauceCodePro
     #family: CodeNewRoman Nerd Font
-    family: RobotoMono
     #family: Hack
     #family: JetBrains Mono
-    #family: UbuntuMono Nerd Font
-    # family: Monofur Nerd Font
+    #family: UbuntuMono
+    #family: Monofur Nerd Font
     #family: TerminessTTF Nerd Font
     #family: Mononoki Nerd Font
+    #family: dejavu sans
+    family: Noto Sans Mono
+    #family: Armino
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -132,13 +134,14 @@ font:
     # value specified for the normal font.
     # family: SauceCodePro Nerd Font
     # family: CodeNewRoman Nerd Font
-    family: RobotoMono
+    #family: RobotoMono
     #family: Hack
     # family: JetBrains Mono
     #family: UbuntuMono Nerd Font
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
     #family: Mononoki Nerd Font
+    family: Noto Sans Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -151,13 +154,14 @@ font:
     # value specified for the normal font.
     # family: SauceCodePro Nerd Font Mono
     # family: CodeNewRoman Nerd Font
-    family: RobotoMono
+    #family: RobotoMono
     #family: Hack
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
     #family: Mononoki Nerd Font
+    family: Noto Sans Mono
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -170,13 +174,14 @@ font:
     # value specified for the normal font.
     # family: SauceCodePro Nerd Font Mono
     # family: CodeNewRoman Nerd Font
-    family: RobotoMono
+    #family: RobotoMono
     #family: Hack
     # family: JetBrains Mono
     #family: UbuntuMono Nerd Font
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
     #family: Mononoki Nerd Font
+    family: Noto Sans Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
@@ -214,7 +219,7 @@ font:
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: true
 
 schemes:
 
@@ -2015,7 +2020,7 @@ colors: *gruvbox_dark
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
-#debug:
+debug:
   # Display the time it takes to redraw each frame.
   #render_timer: false
 
@@ -2031,7 +2036,7 @@ colors: *gruvbox_dark
   #   - Info
   #   - Debug
   #   - Trace
-  #log_level: Warn
+  log_level: Debug
 
   # Print all received window events.
   #print_events: false
