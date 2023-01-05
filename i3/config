@@ -54,8 +54,6 @@ bindsym $mod+Shift+q kill
 
 # gmrun
 bindsym $mod+F2 exec --no-startup-id gmrun
-# start xfce-appfinder
-bindsym $mod+F3 exec --no-startup-id xfce4-appfinder
 
 # deepin-screenshot
 #bindsym $mod+Shift+p exec --no-startup-id deepin-screen-recorder
@@ -165,6 +163,7 @@ default_border pixel
 
 assign [class="Evolution"] $workspace8
 assign [class="Slack"] $workspace10
+assign [class="Viber"] $workspace10
 assign [class="Riot"] $workspace10
 assign [class="Mattermost"] $workspace10
 assign [class="Telegram"] $workspace10
@@ -276,6 +275,7 @@ exec --no-startup-id evolution
 #exec --no-startup-id riot-web
 #exec --no-startup-id shutter --min_at_startup
 exec --no-startup-id telegram-desktop
+exec --no-startup-id viber
 #exec --no-startup-id mattermost-desktop
 exec --no-startup-id gnome-keyring-daemon --start
 exec --no-startup-id clipit
@@ -283,10 +283,10 @@ exec --no-startup-id keepassx2
 # I don't know why, but to display normal fonts we need to run this
 exec --no-startup-id bash -c '[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources'
 
-# compton
+# picom
 # exec --no-startup-id picom --vsync=opengl --backend=glx
 #exec --no-startup-id picom --vsync --backend=xr_glx_hybrid
-exec --no-startup-id picom
+exec --no-startup-id picom -b
 
 # idle measured script
 exec --no-startup-id /home/ivan/work/check_idle/bin/checkidle start
@@ -299,10 +299,10 @@ bindsym $mod+Ctrl+Shift+bracketright move workspace to output down
 
 
 # Change caps-lock to ctrl
-exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp:win_space_toggle,ctrl:nocaps"
+#exec_always setxkbmap -layout "us,ro(winkeys),ru(phonetic_winkeys)" -option "grp:win_space_toggle,ctrl:nocaps"
 
 # autorepeat key off
-exec_always xset r off
+#exec_always xset r off
 
 # set the click on tuchpad
 #exec_always xinput set-prop 13 322 1
@@ -337,7 +337,7 @@ exec --no-startup-id blueberry-tray
 exec --no-startup-id nm-applet
 
 # num lock activated
-exec_always --no-startup-id numlockx on
+# exec_always --no-startup-id numlockx on
 
 # dropbox
 #exec --no-startup-id dropbox start
@@ -350,7 +350,7 @@ exec_always --no-startup-id numlockx on
 exec --no-startup-id volumeicon
 
 # xfce-appfinder
-bindsym control+$win+a exec --no-startup-id xfce4-appfinder
+#bindsym control+$win+a exec --no-startup-id xfce4-appfinder
 
 # clipman
 #exec --no-startup-id xfce4-clipman
@@ -425,7 +425,7 @@ mode "$mode_screenlayout" {
 # Some apps louncher
 # -----------------------------------
 
-set $mode_launcher Launch: [a]dblink [c]hromium [t]hunar [n]autilus [e]clipse net[b]eans [p]ostman
+set $mode_launcher Launch: [a]dblink [c]hromium [d]dbeaver [m]mongo-compass [n]autilus [t]hunar [p]ostman
 
 bindsym $mod+o mode "$mode_launcher"
 
@@ -433,10 +433,12 @@ mode "$mode_launcher" {
 
     # bindsym c exec chromium, mode "default"
     bindsym a exec /home/ivan/programs/adblink2/adbLink2, mode "default"
-    bindsym c exec chromium, mode "default"
+    bindsym c exec google-chrome-unstable, mode "default"
     bindsym n exec nautilus, mode "default"
-    bindsym e exec /home/ivan/programs/eclipse/oxygen/eclipse/eclipse, mode "default"
-    bindsym b exec /home/ivan/programs/netbeans-8.2/bin/netbeans --jdkhome $JAVA_HOME, mode "default"
+    bindsym m exec mongodb-compass-beta, mode "default"
+    bindsym d exec dbeaver, mode "default"
+    #bindsym e exec /home/ivan/programs/eclipse/oxygen/eclipse/eclipse, mode "default"
+    #bindsym b exec /home/ivan/programs/netbeans-8.2/bin/netbeans --jdkhome $JAVA_HOME, mode "default"
     bindsym p exec postman, mode "default"
     bindsym t exec thunar, mode "default"
 
