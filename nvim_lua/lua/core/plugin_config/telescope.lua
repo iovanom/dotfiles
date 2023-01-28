@@ -5,10 +5,10 @@ require('telescope').setup({
   defaults = {
     extensions = {
       fzf = {
-        fuzzy = true,                    -- false will only do exact matching
-        override_generic_sorter = true,  -- override the generic sorter
-        override_file_sorter = true,     -- override the file sorter
-        case_mode = "smart_case",        -- or "ignore_case" or "respect_case" the default case_mode is "smart_case"
+        fuzzy = true, -- false will only do exact matching
+        override_generic_sorter = true, -- override the generic sorter
+        override_file_sorter = true, -- override the file sorter
+        case_mode = "smart_case", -- or "ignore_case" or "respect_case" the default case_mode is "smart_case"
       },
     },
     mappings = {
@@ -21,7 +21,11 @@ require('telescope').setup({
           actions.move_selection_previous, type = "action",
           opts = { nowait = true, silent = true }
         },
-        ["<esc>"] = actions.close,
+        ["<C-o>"] = function(prompt_bufnr)
+          require("telescope.actions").select_default(prompt_bufnr) require("telescope.builtin").resume()
+        end,
+        ["<C-q>"] = actions.send_to_qflist,
+        -- ["<esc>"] = actions.close,
       }
     }
   }

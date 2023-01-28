@@ -120,7 +120,7 @@ status.register("pulseaudio",
 
 
 status.register("spotify",
-                format="{status} {artist} - {title}",
+                format="{status}    ",
                 status={"pause": "", "play": "", "stop": ""},
                 format_no_player="  "
                )

@@ -7,6 +7,8 @@ require('mason-lspconfig').setup({
     'eslint',
     'tsserver',
     'rust_analyzer',
+    'phpactor',
+    'pyright',
   }
 })
 
@@ -49,8 +51,9 @@ cmp.setup({
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lsp_autogroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   -- lsp signature config
   require('lsp_signature').on_attach({
     hint_prefix = ">> ",
@@ -69,6 +72,18 @@ local on_attach = function(_, bufnr)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
   vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+  -- autoformating on save
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_clear_autocmds({ group = lsp_autogroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = { '*.rs', '*.c', '*.cpp', '*.py' },
+      group = lsp_autogroup,
+      callback = function()
+        vim.lsp.buf.format()
+      end
+    })
+  end
+
 end
 
 require('lspconfig').sumneko_lua.setup {
@@ -103,7 +118,7 @@ require('lspconfig').eslint.setup {
           -- set async false because it write before format it
           vim.lsp.buf.format({ async = false })
         end,
-        --]]--
+        --]] --
         group = au_lsp,
       })
     end
@@ -117,6 +132,16 @@ require('lspconfig').tsserver.setup {
 }
 
 require('lspconfig').rust_analyzer.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+require('lspconfig').phpactor.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+require('lspconfig').pyright.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
@@ -137,7 +162,7 @@ local coffeelint = {
   -- that spawns the command with the given arguments and options
   generator = null_ls.generator({
     command = "coffeelint",
-    args = {"--stdin", "--reporter", "raw"},
+    args = { "--stdin", "--reporter", "raw" },
     to_stdin = true,
     from_stderr = true,
     -- output format, can be (raw, json, line)
@@ -159,11 +184,8 @@ local coffeelint = {
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
-    -- null_ls.builtins.diagnostics.eslint,
-    null_ls.builtins.completion.spell,
+    -- null_ls.builtins.completion.spell,
     coffeelint,
   },
   on_attach = on_attach
 })
-
-

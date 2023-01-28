@@ -121,12 +121,12 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 "1:  "
-set $workspace2 "2: "
-set $workspace8 "8: "
-set $workspace9 "9: "
-set $workspace10 "10: "
-set $workspace11 "11: "
+set $workspace1 "1:   |"
+set $workspace2 "2:  |"
+set $workspace8 "8:  |"
+set $workspace9 "9:  |"
+set $workspace10 "10:   |"
+set $workspace11 "11:  |"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1 
@@ -205,24 +205,23 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 bar {
-        #i3bar_command i3bar
-        i3bar_command i3bar
-        workspace_buttons yes
-        font pango:RobotoMono Nerd Font Bold 9
-        tray_padding 2
-        #status_command /home/ivan/.config/i3/pomodoro-status.sh
-        status_command exec python /home/ivan/.config/i3/status.py
-        #status_command py3status
+    #i3bar_command i3bar
+    workspace_buttons yes
+    workspace_min_width 30 
+    padding 1px 0 1px
+    font pango:Noto Sans Mono Bold 9 
+    tray_padding 2
+    status_command exec python /home/ivan/.config/i3/status.py
     colors {
-        #background #2F2F2F
+        background #2F2F2F
         statusline #eeeeee
         separator  #666666
         #                     border  backgr. text
         focused_workspace     #a9a9a9 #5f676a #eeeeee
         active_workspace      #a9a9a9 #5f676a #a9a9a9
-        inactive_workspace    #a9a9a9 #222222 #a9a9a9
-        urgent_workspace      #a9a9a9 #d42121 #FFFFFF
-        }
+        inactive_workspace    #a9a9a9 #2f2f2f #a9a9a9
+        urgent_workspace      #a9a9a9 #2f2f2f #FFFFFF
+    }
 }
 
 # # Color themes

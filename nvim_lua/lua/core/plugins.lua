@@ -46,7 +46,8 @@ return require('packer').startup(function(use)
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use {'fatih/vim-go', run = ':GoUpdateBinaries' }
+  use 'kelly-lin/telescope-ag'
+  use {'fatih/vim-go', run = ':GoUpdateBinaries'}
   use 'skywind3000/asyncrun.vim'
   use 'jparise/vim-graphql'
   use 'dhruvasagar/vim-table-mode'
