@@ -1,0 +1,32 @@
+###########################################################################
+#                    GENERATED FROM get_tm_snippets.py                    #
+###########################################################################
+
+snippet # "variable interpolation" ib
+#{${1}}${2}
+endsnippet
+
+snippet #{ "var interpolation" ib
+#{${1}}${2}
+endsnippet
+
+snippet context "context spec" !b
+context '${1}' do
+  ${2}${VISUAL}
+end${3}
+endsnippet
+
+snippet before "before hook" !b
+before${1} do
+  ${2}
+end${3}
+endsnippet
+
+snippet bbefore "inline before" !b
+before { ${1} }${2}
+endsnippet
+
+snippet nokop "page puts" !b
+puts Nokogiri::XML(page.html,&:noblanks).to_xhtml
+endsnippet
+# vim:ft=snippets:

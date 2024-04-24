@@ -30,9 +30,9 @@ status.register("battery",
     alert=True,
     alert_percentage=10,
     status={
-        "DIS": "",
-        "CHR": "",
-        "FULL": "",
+        "DIS": "",
+        "CHR": "",
+        "FULL": "",
     },)
 
 # This would look like this:
@@ -84,7 +84,7 @@ status.register("ping", format=" {ping}ms")
 # 42/128G [86G]
 status.register("disk",
     path="/",
-    format=" {avail}/{total}G",)
+    format=" {avail}/{total}G",)
 
 """
 status.register("disk",
@@ -98,7 +98,7 @@ status.register("mem", format=" {total_mem} / {used_mem} G",
 
 status.register("cpu_usage_graph")
 # Shows your CPU temperature, if you have a Intel CPU
-status.register("temp", format=" {temp:.0f}°C",)
+status.register("temp", format=" {temp:.0f}°C",)
 
 
 # Shows pulseaudio default sink volume
@@ -127,10 +127,10 @@ status.register("spotify",
 
 #status.register("shell", command="i3-gnome-pomodoro status")
 status.register('pomodoro',
-                pomodoro_duration=20*60,
+                pomodoro_duration=60*60,
                 break_duration=10*60,
                 long_break_duration=30*60,
-                sound="/home/ivan/Music/analog-watch-alarm_daniel-simion.wav",
-                format=" {current_pomodoro}/{total_pomodoro} {time}")
+                sound="/home/ivan/Music/mixkit-facility-alarm-908.wav",
+                format=" {current_pomodoro}/{total_pomodoro} {time}")
 
 status.run()

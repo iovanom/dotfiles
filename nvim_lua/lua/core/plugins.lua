@@ -30,7 +30,7 @@ return require('packer').startup(function(use)
     'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
     'mfussenegger/nvim-dap',
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
@@ -42,7 +42,7 @@ return require('packer').startup(function(use)
   }
   use {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.0',
+    tag = '0.1.4',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -51,6 +51,11 @@ return require('packer').startup(function(use)
   use 'skywind3000/asyncrun.vim'
   use 'jparise/vim-graphql'
   use 'dhruvasagar/vim-table-mode'
+  use 'editorconfig/editorconfig-vim'
+  use 'github/copilot.vim'
+
+  use 'prisma/vim-prisma'
+  use 'davidmh/cspell.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

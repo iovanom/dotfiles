@@ -30,6 +30,7 @@ alias la='ls -a'
 alias ll='ls -lha'
 alias l='ls' 					
 alias l.="ls -a | grep -E '^\.'"      
+alias newest='ls -t1 | head -n1'
 
 #fix obvious typo's
 alias cd..='cd ..'
@@ -191,6 +192,7 @@ alias ret-up="cd $RETENTLY_DOCKER && d-c up"
 alias ret-stop="cd $RETENTLY_DOCKER && d-c stop"
 alias ret-app="cd $RETENTLY_DOCKER && d-c exec app bash"
 alias ret-nps="cd $RETENTLY_DOCKER/com.retently.nps-webapp"
+alias ret-nutribot="cd $RETENTLY_DOCKER/../nutrichat/nutrichat-telegram-bot"
 alias ret-integr="cd $RETENTLY_DOCKER/com.retently.integrations"
 alias ret-integr-node="cd $RETENTLY_DOCKER/com.retently.integrations"
 alias ret-worker="run_retently_worker"
@@ -220,20 +222,26 @@ iedem () {
   vlc $IEDEM_PLS
 }
 
-export TELEK_PLS="http://telek.me/04469/93159467.m3u8"
+export TELEK_PLS="http://telek.me/013738/22633483.m3u8"
 telek () {
   vlc $TELEK_PLS
 }
 
+export FREE_TV="https://m3url.ru/premier15052023VPN.m3u"
+free_tv () {
+  vlc $FREE_TV
+}
+
 # poetry
 export PATH="$HOME/.poetry/bin:$PATH"
+source ~/.poetry_completion
 
-#eval "$(starship init bash)"
+eval "$(starship init bash)"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 # composer
 export PATH=~/.config/composer/vendor/bin:$PATH
@@ -246,3 +254,5 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin/
 
 alias daynote='nvim $(date +%F).md'
+
+source ~/.private_env

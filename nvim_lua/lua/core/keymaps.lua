@@ -51,3 +51,34 @@ vim.keymap.set('i', '<C-c>', '<nop>', { noremap = true })
 -- move lines
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+
+-- rest client
+vim.keymap.set('n', '<leader>rr', '<Plug>RestNvim')
+
+-- The test function for testing some ideas
+function Test_function()
+
+  local file = vim.fn.expand('%')
+  local buf = vim.api.nvim_create_buf(false, true)
+  local height = vim.api.nvim_win_get_height(0) - 10
+  local width = vim.api.nvim_win_get_width(0) - 10
+  vim.api.nvim_open_win(buf, true, {
+    relative='editor',
+    style='minimal',
+    col=5,
+    row=5,
+    width=width,
+    height=height,
+    border='double',
+  })
+  vim.api.nvim_call_function("termopen", {"python " .. file})
+end
+-- vim.keymap.set('n', 'rr', "<cmd>lua Test_function()<cr>", { noremap = true })
+
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = "make",
+  callback = function()
+    vim.keymap.set('n', '<leader>ph', '^yt:ko.PHONY: <Esc>p')
+  end
+})

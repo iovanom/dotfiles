@@ -18,7 +18,7 @@ window:
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
-  decorations_theme_variant: dark
+  decorations_theme_variant: Dark
   opacity: 0.9
   # Window dimensions (changes require restart)
   #
@@ -120,7 +120,7 @@ font:
     #family: TerminessTTF Nerd Font
     #family: Mononoki Nerd Font
     #family: dejavu sans
-    family: Noto Sans Mono
+    #family: Noto Sans Mono
     #family: Armino
 
     # The `style` can be specified to pick a specific face.
@@ -141,7 +141,7 @@ font:
     # family: Monofur Nerd Font
     # family: TerminessTTF Nerd Font
     #family: Mononoki Nerd Font
-    family: Noto Sans Mono
+    #family: Noto Sans Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -161,7 +161,7 @@ font:
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
     #family: Mononoki Nerd Font
-    family: Noto Sans Mono
+    #family: Noto Sans Mono
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -181,7 +181,7 @@ font:
     # family: Monofuritalic Nerd Font Mono
     # family: TerminessTTF Nerd Font
     #family: Mononoki Nerd Font
-    family: Noto Sans Mono
+    #family: Noto Sans Mono
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic

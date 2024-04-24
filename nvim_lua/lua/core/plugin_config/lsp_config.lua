@@ -1,13 +1,12 @@
 require('mason').setup()
 require('mason-lspconfig').setup({
   ensure_installed = {
-    'sumneko_lua',
+    'lua_ls',
     'gopls',
     'graphql',
     'eslint',
     'tsserver',
     'rust_analyzer',
-    'phpactor',
     'pyright',
   }
 })
@@ -17,6 +16,7 @@ require('mason-lspconfig').setup({
 --]]
 
 local cmp = require('cmp')
+local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
@@ -39,13 +39,13 @@ cmp.setup({
     ['<C-y>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'ultisnips' },
     {
       name = 'buffer',
       option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end }
     },
-    { name = 'nvim_lsp' },
   })
 })
 
@@ -64,6 +64,8 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+  vim.keymap.set('n', '<space>s', require('telescope.builtin').lsp_document_symbols, {})
+  vim.keymap.set('n', '<space>t', require('telescope.builtin').treesitter, {})
 
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
@@ -86,7 +88,7 @@ local on_attach = function(client, bufnr)
 
 end
 
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').lua_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
 }
@@ -136,11 +138,6 @@ require('lspconfig').rust_analyzer.setup {
   on_attach = on_attach,
 }
 
-require('lspconfig').phpactor.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
-
 require('lspconfig').pyright.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -153,7 +150,7 @@ require('lspconfig').pyright.setup {
 local null_ls = require("null-ls")
 local null_helpers = require("null-ls.helpers")
 
--- setup the coffelint with null_ls
+-- setup the coffeelint with null_ls
 local coffeelint = {
   name = 'coffeelint',
   method = null_ls.methods.DIAGNOSTICS,
@@ -181,11 +178,24 @@ local coffeelint = {
   })
 }
 
+local cspell = require('cspell')
+
 null_ls.setup({
   sources = {
     null_ls.builtins.formatting.stylua,
-    -- null_ls.builtins.completion.spell,
+    -- null_ls.builtins.diagnostics.php,
+    -- null_ls.builtins.diagnostics.phpstan,
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.codespell,
+    null_ls.builtins.diagnostics.staticcheck,
+    null_ls.builtins.diagnostics.codespell.with({
+      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    }),
     coffeelint,
+    cspell.diagnostics,
+    cspell.code_actions,
   },
-  on_attach = on_attach
+  on_attach = on_attach,
+  diagnostic_on_save = {
+  }
 })

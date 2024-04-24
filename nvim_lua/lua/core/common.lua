@@ -43,5 +43,5 @@ vim.opt.hlsearch = true
 vim.opt.lazyredraw = true
 
 -- folds
-vim.opt.foldmethod = 'syntax'
+vim.opt.foldmethod = 'manual'
 vim.opt.foldlevelstart = 99
