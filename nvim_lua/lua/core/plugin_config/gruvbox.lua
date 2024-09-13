@@ -1,4 +1,4 @@
-vim.o.termguicolor = true
+-- vim.o.termguicolor = true
 vim.o.background = 'dark'
 
 -- highlight color columnt

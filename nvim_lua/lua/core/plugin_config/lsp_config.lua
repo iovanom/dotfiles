@@ -5,7 +5,7 @@ require('mason-lspconfig').setup({
     'gopls',
     'graphql',
     'eslint',
-    'tsserver',
+    'ts_ls',
     'rust_analyzer',
     'pyright',
   }
@@ -16,7 +16,7 @@ require('mason-lspconfig').setup({
 --]]
 
 local cmp = require('cmp')
-local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
+--local cmp_ultisnips_mappings = require("cmp_nvim_ultisnips.mappings")
 
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
@@ -46,6 +46,7 @@ cmp.setup({
       name = 'buffer',
       option = { get_bufnrs = function() return vim.api.nvim_list_bufs() end }
     },
+    { name = 'codeium' },
   })
 })
 
@@ -74,7 +75,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
   vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-  -- autoformating on save
+  -- autoformatting on save
   if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_clear_autocmds({ group = lsp_autogroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -128,9 +129,14 @@ require('lspconfig').eslint.setup {
   end,
 }
 
-require('lspconfig').tsserver.setup {
+require('lspconfig').ts_ls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
+  filetypes = {
+    "javascript",
+    "typescript",
+    "coffeescript",
+  }
 }
 
 require('lspconfig').rust_analyzer.setup {

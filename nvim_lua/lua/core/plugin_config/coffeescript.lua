@@ -1,4 +1,4 @@
-vim.o.coffee_watch_vert = 1
+-- vim.o.coffee_watch_vert = 1
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = "coffee",

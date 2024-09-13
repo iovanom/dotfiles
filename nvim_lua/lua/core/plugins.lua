@@ -16,12 +16,12 @@ return require('packer').startup(function(use)
 
   -- My plugins here
   use 'ellisonleao/gruvbox.nvim'
-  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
   use {'nvim-tree/nvim-tree.lua', requires = { 'nvim-tree/nvim-web-devicons', }, tag = 'nightly'}
   use 'kchmck/vim-coffee-script'
   use 'tpope/vim-surround'
   use 'nvim-lualine/lualine.nvim'
-  use 'nvim-treesitter/nvim-treesitter'
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'lewis6991/gitsigns.nvim'
   use 'tpope/vim-fugitive'
   use 'vim-test/vim-test'
@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-nvim-lsp',
     'SirVer/ultisnips',
-    'quangnguyen30192/cmp-nvim-ultisnips',
+    --'quangnguyen30192/cmp-nvim-ultisnips',
     'ray-x/lsp_signature.nvim',
   }
   use {
@@ -52,7 +52,8 @@ return require('packer').startup(function(use)
   use 'jparise/vim-graphql'
   use 'dhruvasagar/vim-table-mode'
   use 'editorconfig/editorconfig-vim'
-  use 'github/copilot.vim'
+  -- use 'github/copilot.vim'
+  use 'Exafunction/codeium.vim'
 
   use 'prisma/vim-prisma'
   use 'davidmh/cspell.nvim'

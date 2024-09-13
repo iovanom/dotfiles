@@ -1,5 +1,5 @@
-vim.go.python3_host_prog = '/usr/bin/python3'
-vim.go.python_host_prog = '/usr/bin/python2'
+-- vim.go.python3_host_prog = '/usr/bin/python3'
+-- vim.go.python_host_prog = '/usr/bin/python'
 
 vim.opt.backupdir = '/home/ivan/.vimbackup/'
 vim.opt.directory = '/home/ivan/.vimswp/'
