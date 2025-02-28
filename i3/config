@@ -43,7 +43,13 @@ exec --no-startup-id telegram-desktop
 exec --no-startup-id signal-desktop
 # exec --no-startup-id viber
 #exec --no-startup-id mattermost-desktop
-exec --no-startup-id gnome-keyring-daemon --start
+#exec --no-startup-id gnome-keyring-daemon --start
+
+# Start D-Bus session bus
+exec_always --no-startup-id sh -c 'if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then eval "$(dbus-launch --sh-syntax --exit-with-session)"; fi'
+# Start GNOME Keyring Daemon and export environment variables
+# exec_always --no-startup-id sh -c 'eval "$(gnome-keyring-daemon --start --components=secrets,pkcs11,ssh)"; export GNOME_KEYRING_CONTROL; export GNOME_KEYRING_PID; export SSH_AUTH_SOCK'
+
 #exec --no-startup-id clipit
 exec --no-startup-id keepassx2
 # I don't know why, but to display normal fonts we need to run this

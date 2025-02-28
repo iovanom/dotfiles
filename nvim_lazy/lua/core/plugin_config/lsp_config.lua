@@ -2,12 +2,13 @@ require('mason').setup()
 require('mason-lspconfig').setup({
   ensure_installed = {
     'lua_ls',
-    'gopls',
+    --'gopls',
     'graphql',
     'eslint',
     'ts_ls',
     'rust_analyzer',
     'pyright',
+    'svelte',
   }
 })
 
@@ -65,7 +66,11 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
   vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-  vim.keymap.set('n', '<space>s', require('telescope.builtin').lsp_document_symbols, {})
+  vim.keymap.set('n', '<space>s', function ()
+    require('telescope.builtin').lsp_document_symbols({
+      symbol_width = 100
+    })
+  end, {})
   vim.keymap.set('n', '<space>t', require('telescope.builtin').treesitter, {})
 
   vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
@@ -86,7 +91,6 @@ local on_attach = function(client, bufnr)
       end
     })
   end
-
 end
 
 require('lspconfig').lua_ls.setup {
@@ -97,6 +101,15 @@ require('lspconfig').lua_ls.setup {
 require('lspconfig').gopls.setup {
   capabilities = capabilities,
   on_attach = on_attach,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  }
 }
 
 require('lspconfig').graphql.setup {
@@ -135,7 +148,8 @@ require('lspconfig').ts_ls.setup {
   filetypes = {
     "javascript",
     "typescript",
-    "coffeescript",
+    "tsx",
+    "jsx",
   }
 }
 
@@ -145,6 +159,26 @@ require('lspconfig').rust_analyzer.setup {
 }
 
 require('lspconfig').pyright.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+require('lspconfig').svelte.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+require('lspconfig').jsonls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+-- require('lspconfig').coffeesense.setup{
+--   capabilities = capabilities,
+--   on_attach = on_attach,
+-- }
+
+require('lspconfig').intelephense.setup{
   capabilities = capabilities,
   on_attach = on_attach,
 }
@@ -192,13 +226,17 @@ null_ls.setup({
     -- null_ls.builtins.diagnostics.php,
     -- null_ls.builtins.diagnostics.phpstan,
     null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.codespell,
+    -- null_ls.builtins.formatting.codespell,
     null_ls.builtins.diagnostics.staticcheck,
-    null_ls.builtins.diagnostics.codespell.with({
-      method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
-    }),
+    -- null_ls.builtins.diagnostics.codespell.with({
+      -- method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+    -- }),
     coffeelint,
-    cspell.diagnostics,
+    cspell.diagnostics.with({
+      diagnostics_postprocess = function(diagnostic)
+        diagnostic.severity = vim.diagnostic.severity.HINT
+      end
+    }),
     cspell.code_actions,
   },
   on_attach = on_attach,
