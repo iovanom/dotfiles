@@ -42,9 +42,28 @@ vim.opt.hlsearch = true
 -- Don't redraw while executing macros (goot performance config)
 vim.opt.lazyredraw = true
 
+-- ------------
 -- folds
---vim.opt.foldmethod = 'manual'
+-- ------------
+
+-- Set the global fold method to use Treesitter
+vim.opt.foldmethod = 'expr'
+
+-- Set the expression that Treesitter will use to determine folds
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- Start with folds closed
 vim.opt.foldlevelstart = 99
+
+-- By default, don't fold files
+vim.opt.foldenable = true
+
+-- ------------
+-- folds end
+-- ------------
 
 -- completion
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+
+-- need for bufferline plugin
+vim.opt.termguicolors = true

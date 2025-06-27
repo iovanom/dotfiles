@@ -4,7 +4,7 @@ return {
   -- lua plugins utils
   'nvim-lua/plenary.nvim',
 
-  "folke/which-key.nvim",
+  'folke/which-key.nvim',
 
   -- Colorschemes
   {
@@ -35,8 +35,13 @@ return {
   {
     'akinsho/bufferline.nvim',
     version = "*",
-    dependencies = { 'nvim-tree/nvim-web-devicons' }, init = function()
-    end
+    opts = {
+      options = {
+        mode = "buffers",
+        diagnostics = "nvim_lsp",
+      }
+    },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
 
   'tpope/vim-surround',

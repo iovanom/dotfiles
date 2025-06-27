@@ -55,6 +55,9 @@ return {
       -- Install parsers synchronously (only applied to `ensure_installed`)
       sync_install = true,
       auto_install = true,
+      folding = {
+        enable = true
+      }
     }
   },
 }
