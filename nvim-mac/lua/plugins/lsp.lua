@@ -27,6 +27,7 @@ return {
       local null_ls = require('null-ls')
       null_ls.setup({
         sources = {
+          -- formatting
           null_ls.builtins.formatting.stylua,
           null_ls.builtins.formatting.prettier,
           null_ls.builtins.formatting.markdownlint,
@@ -58,6 +59,7 @@ return {
           vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
           vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
           vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+
           vim.keymap.set('n', '<space>s', function ()
             require('telescope.builtin').lsp_document_symbols({
               symbol_width = 100
@@ -68,7 +70,6 @@ return {
 
           vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
           vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
-
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
           vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
           vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
