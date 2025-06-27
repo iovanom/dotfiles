@@ -32,7 +32,7 @@ log_level = "Debug"
 TERM = "xterm-256color"
 
 [font]
-size = 12
+size = 13
 
 [font.bold]
 style = "Bold"
@@ -45,6 +45,7 @@ style = "Italic"
 
 [font.normal]
 style = "Regular"
+family = "Hack Nerd Font Mono"
 
 [font.offset]
 x = 0
