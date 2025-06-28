@@ -6,11 +6,11 @@ status = Status(interval=2)
 # Tue 30 Jul 11:59:46 PM KW31
 #                          ^-- calendar week
 status.register("clock",
-    format="%a %-d %b %X KW%V",)
+                format="%a %-d %b %X KW%V",)
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
-#status.register("load")
+# status.register("load")
 
 
 # The battery monitor has many formatting options, see README for details
@@ -25,27 +25,17 @@ status.register("clock",
 # If you don't have a desktop notification demon yet, take a look at dunst:
 #   http://www.knopwob.org/dunst/
 status.register("battery",
-    #format="{status}/{consumption:.2f}W {percentage:.2f}% [{percentage_design:.2f}%] {remaining:%E%hh:%Mm}",
-    format="{status} {percentage:.2f}% {remaining:%E%hh:%Mm}",
-    alert=True,
-    alert_percentage=10,
-    status={
-        "DIS": "",
-        "CHR": "",
-        "FULL": "",
-    },)
-
-# This would look like this:
-# Discharging 6h:51m
-#status.register("battery",
-#    format="{status} {remaining:%E%hh:%Mm}",
-#    alert=True,
-#    alert_percentage=5,
-#    status={
-#        "DIS":  "Discharging",
-#        "CHR":  "Charging",
-#        "FULL": "Bat full",
-#    },)
+                # format="{status}/{consumption:.2f}W {percentage:.2f}% [{percentage_design:.2f}%] {remaining:%E%hh:%Mm}",
+                interval=15,
+                battery_ident="BAT0",
+                format="{status} {percentage:.2f}% {remaining:%E%hh:%Mm}",
+                alert=True,
+                alert_percentage=10,
+                status={
+                    "DIS": "",
+                    "CHR": "",
+                    "FULL": "",
+                },)
 
 # Displays whether a DHCP client is running
 '''
@@ -62,20 +52,23 @@ status.register("runwatch",
 #
 # Note: the network module requires PyPI package netifaces
 status.register("network",
-    interface="enp3s0",
-    format_up="{v4cidr}",)
+                interface="enp3s0",
+                format_up="{v4cidr}",)
 
 # Note: requires both netifaces and basiciw (for essid and quality)
 status.register("network",
-    interface="wlp5s0",
-    format_up="{essid} {quality:03.0f}%",)
+                interface="wlp5s0",
+                format_up="{essid} {quality:03.0f}%",)
 
+# retently vpn config
+'''
 status.register("openvpn",
                 vpn_name="retently",
                 status_command="bash -c 'systemctl show openvpn-client@%(vpn_name)s | grep ActiveState=active'",
                 vpn_up_command="systemctl start openvpn-client@%(vpn_name)s",
                 vpn_down_command="systemctl stop openvpn-client@%(vpn_name)s"
-               )
+                )
+'''
 
 status.register("ping", format=" {ping}ms")
 
@@ -83,8 +76,8 @@ status.register("ping", format=" {ping}ms")
 # Format:
 # 42/128G [86G]
 status.register("disk",
-    path="/",
-    format=" {avail}/{total}G",)
+                path="/",
+                format=" {avail}/{total}G",)
 
 """
 status.register("disk",
@@ -92,7 +85,7 @@ status.register("disk",
     format=" disk {avail}/{total}G",)
 """
 
-#status.register("mem_bar")
+# status.register("mem_bar")
 status.register("mem", format=" {total_mem} / {used_mem} G",
                 divisor=1024**3)
 
@@ -105,12 +98,12 @@ status.register("temp", format=" {temp:.0f}°C",)
 #
 # Note: requires libpulseaudio from PyPI
 status.register("pulseaudio",
-    format="♪{volume}",)
+                format="♪{volume}",)
 
 # Shows mpd status
 # Format:
 # Cloud connected▶Reroute to Remain
-#status.register("mpd",
+# status.register("mpd",
 #    format="{title}{status}{album}",
 #    status={
 #        "pause": "▷",
@@ -123,9 +116,9 @@ status.register("spotify",
                 format="{status}    ",
                 status={"pause": "", "play": "", "stop": ""},
                 format_no_player="  "
-               )
+                )
 
-#status.register("shell", command="i3-gnome-pomodoro status")
+# status.register("shell", command="i3-gnome-pomodoro status")
 status.register('pomodoro',
                 pomodoro_duration=60*60,
                 break_duration=10*60,

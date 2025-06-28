@@ -305,6 +305,9 @@
     msg_urgency = normal
     timeout = 5
 
+[all_notifications]
+    timeout = 5
+
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
 #

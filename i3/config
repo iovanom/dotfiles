@@ -44,6 +44,7 @@ exec --no-startup-id signal-desktop
 # exec --no-startup-id viber
 #exec --no-startup-id mattermost-desktop
 #exec --no-startup-id gnome-keyring-daemon --start
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg
 
 # Start D-Bus session bus
 exec_always --no-startup-id sh -c 'if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then eval "$(dbus-launch --sh-syntax --exit-with-session)"; fi'
@@ -62,7 +63,7 @@ exec --no-startup-id flameshot
  exec --no-startup-id picom -b
 
 # idle measured script
-exec --no-startup-id /home/ivan/work/check_idle/bin/checkidle start
+# exec --no-startup-id /home/ivan/work/check_idle/bin/checkidle start
 # clipboard manager
 exec --no-startup-id greenclip daemon>/dev/null
 

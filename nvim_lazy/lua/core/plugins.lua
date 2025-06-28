@@ -69,7 +69,7 @@ local plugins = {
   'hrsh7th/cmp-cmdline',
   'hrsh7th/cmp-nvim-lsp',
   'SirVer/ultisnips',
-  -- 'quangnguyen30192/cmp-nvim-ultisnips',
+  'quangnguyen30192/cmp-nvim-ultisnips',
   'ray-x/lsp_signature.nvim',
 
   -- Telescope Plugins
@@ -130,7 +130,7 @@ local plugins = {
 
       local builtin = require('telescope.builtin')
 
-      vim.keymap.set('n', '<leader>t', builtin.find_files, {})
+      vim.keymap.set('n', '<leader>t', builtin.find_files, { nowait = true, noremap = true })
       vim.keymap.set('n', '<leader><Space>', builtin.oldfiles, {})
       vim.keymap.set('n', '<c-f>g', function()
         return builtin.live_grep({ grep_open_file = true })
@@ -165,11 +165,60 @@ local plugins = {
   'prisma/vim-prisma',
   'davidmh/cspell.nvim',
   -- 'rest-nvim/rest.nvim',
+
+  -- mini.nvim Plugins
   {
     'echasnovski/mini.nvim',
     version = false,
     config = function()
       require("mini.ai").setup({})
+      -- local miniclue = require('mini.clue')
+      -- miniclue.setup({
+      --   triggers = {
+      --     -- Leader triggers
+      --     { mode = 'n', keys = '<Leader>' },
+      --     { mode = 'x', keys = '<Leader>' },
+      --
+      --     -- Built-in completion
+      --     { mode = 'i', keys = '<C-x>' },
+      --
+      --     -- `g` key
+      --     { mode = 'n', keys = 'g' },
+      --     { mode = 'x', keys = 'g' },
+      --
+      --     -- Marks
+      --     { mode = 'n', keys = "'" },
+      --     { mode = 'n', keys = '`' },
+      --     { mode = 'x', keys = "'" },
+      --     { mode = 'x', keys = '`' },
+      --
+      --     -- Registers
+      --     { mode = 'n', keys = '"' },
+      --     { mode = 'x', keys = '"' },
+      --     { mode = 'i', keys = '<C-r>' },
+      --     { mode = 'c', keys = '<C-r>' },
+      --
+      --     -- Window commands
+      --     { mode = 'n', keys = '<C-w>' },
+      --
+      --     -- `z` key
+      --     { mode = 'n', keys = 'z' },
+      --     { mode = 'x', keys = 'z' },
+      --     -- `[` and `]`
+      --     { mode = 'n', keys = '[' },
+      --     { mode = 'n', keys = ']' },
+      --   },
+      --
+      --   clues = {
+      --     -- Enhance this by adding descriptions for <Leader> mapping groups
+      --     miniclue.gen_clues.builtin_completion(),
+      --     miniclue.gen_clues.g(),
+      --     miniclue.gen_clues.marks(),
+      --     miniclue.gen_clues.registers(),
+      --     miniclue.gen_clues.windows(),
+      --     miniclue.gen_clues.z(),
+      --   },
+      -- })
     end
   },
 
@@ -180,25 +229,26 @@ local plugins = {
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
     opts = {
-      provider = "claude",
+      provider = "openrouter",
       auto_suggestions_provider = "claude",
-      openai = {
-        model = 'gpt-4o-mini',
-      },
-      claude = {
-        model = "claude-3-5-sonnet-20241022",
-        -- model = "claude-3-7-sonnet-20250219",
-        -- disable_tools = true,
-      },
-      vendors = {
+      providers = {
+        openai = {
+          model = 'gpt-4o-mini',
+        },
+        claude = {
+          model = "claude-3-5-sonnet-20241022",
+          -- model = "claude-3-7-sonnet-20250219",
+          -- disable_tools = true,
+        },
         openrouter = {
           __inherited_from = 'openai',
           endpoint = 'https://openrouter.ai/api/v1',
           api_key_name = 'OPENROUTER_API_KEY',
           -- model = 'deepseek/deepseek-r1',
           -- model='anthropic/claude-3.5-haiku',
-          model='google/gemini-2.0-flash-001',
-          disable_tools = true,
+          -- model='google/gemini-2.0-flash-001',
+          model='anthropic/claude-3.5-sonnet',
+          -- disable_tools = true,
         },
       },
       mappings = {
@@ -209,7 +259,10 @@ local plugins = {
       },
       windows = {
         width = 40
-      }
+      },
+      behaviour = {
+        enable_claude_text_editor_tool_mode = true,
+      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
@@ -245,6 +298,24 @@ local plugins = {
       },
     },
   },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    -- stylua: ignore
+    keys = {
+      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+  },
+  -- { 
+  --   'terrastruct/d2-vim',
+  --   ft = { "d2" },
+  --   lazy = false,
+  -- }
 }
 
 -- Initialize lazy.nvim with your plugins

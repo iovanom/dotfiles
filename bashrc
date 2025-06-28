@@ -135,17 +135,14 @@ if [ ! -S ~/.ssh/ssh_auth_sock ]; then
   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
 fi
 export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-ssh-add -l > /dev/null || (ssh-add ~/.ssh/personal-ivan.majeru && ssh-add ~/.ssh/retently_rsa)
+
+#ssh-add -l > /dev/null || (ssh-add ~/.ssh/personal-ivan.majeru && ssh-add ~/.ssh/retently_rsa)
+ssh-add -l > /dev/null || ssh-add ~/.ssh/personal-ivan.majeru
 
 # virtualenvwrapper section
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/bin/virtualenvwrapper.sh
 
-
-# exercism command autocompletes (https://exercism.io)
-source /home/ivan/programs/exercism-linux-64bit/shell/exercism_completion.bash
-# alias for exercism
-alias exercism-test="go test -v --bench . --benchmem"
 
 # rust and cargo
 export PATH=$PATH:$HOME/.cargo/bin
@@ -239,9 +236,9 @@ source ~/.poetry_completion
 eval "$(starship init bash)"
 
 # pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 
 # composer
 export PATH=~/.config/composer/vendor/bin:$PATH

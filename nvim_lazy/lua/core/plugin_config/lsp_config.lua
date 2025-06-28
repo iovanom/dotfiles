@@ -8,6 +8,7 @@ require('mason-lspconfig').setup({
     'ts_ls',
     'rust_analyzer',
     'pyright',
+    'pylsp',
     'svelte',
   }
 })
@@ -161,6 +162,19 @@ require('lspconfig').rust_analyzer.setup {
 require('lspconfig').pyright.setup {
   capabilities = capabilities,
   on_attach = on_attach,
+}
+
+require('lspconfig').pylsp.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+        },
+      },
+    },
+  },
 }
 
 require('lspconfig').svelte.setup {

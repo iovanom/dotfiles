@@ -136,14 +136,22 @@ mods = "Alt|Shift"
 history = 5000
 
 [window]
-decorations_theme_variant = "Dark"
+decorations = "Full"
+decorations_theme_variant = "None"
 opacity = 0.9
-title = "Alacritty"
+title = "_-_"
 
 [window.class]
 general = "Alacritty"
 instance = "Alacritty"
 
 [window.padding]
-x = 8
-y = 8
+x = 10 
+y = 10
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+[mouse]
+hide_when_typing = true
