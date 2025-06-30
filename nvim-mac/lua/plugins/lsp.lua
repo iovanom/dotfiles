@@ -34,7 +34,7 @@ return {
 
           -- diagnostics
           null_ls.builtins.diagnostics.staticcheck,
-          null_ls.builtins.diagnostics.golangci_lint,
+          -- null_ls.builtins.diagnostics.golangci_lint, -- commented because of performance problem
           null_ls.builtins.diagnostics.markdownlint,
           null_ls.builtins.diagnostics.buf,
           null_ls.builtins.diagnostics.codespell,
