@@ -129,6 +129,7 @@ return {
         desc = "Quickfix List (Trouble)",
       },
     },
-  }
+  },
 
+  -- 'terrastruct/d2-vim',
 }
