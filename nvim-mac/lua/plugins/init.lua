@@ -132,4 +132,10 @@ return {
   },
 
   -- 'terrastruct/d2-vim',
+
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    opts = {},
+  },
 }

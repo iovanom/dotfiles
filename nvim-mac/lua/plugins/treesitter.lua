@@ -35,6 +35,7 @@ return {
         "yaml",
         "http",
         "earthfile",
+        "scala",
       },
       highlight = {
         enable = true,              -- Enable highlighting
