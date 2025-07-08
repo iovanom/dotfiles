@@ -1,6 +1,6 @@
 require("core.common")
 require("core.keymaps")
--- requrie lazy after main keymaps
+-- require lazy after keymaps
 require("config.lazy")
 require("core.commands")
 require("core.autocommands")

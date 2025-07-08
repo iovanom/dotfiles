@@ -76,7 +76,7 @@ return {
     -- Make sure to set this up properly if you have lazy=true
     'MeanderingProgrammer/render-markdown.nvim',
     opts = {
-      file_types = { "markdown", "Avante" },
+      file_types = { "markdown", "Avante", "mdc" },
     },
     ft = { "markdown", "Avante" },
   },
@@ -129,6 +129,102 @@ return {
         desc = "Quickfix List (Trouble)",
       },
     },
-  }
+  },
 
+  -- 'terrastruct/d2-vim',
+
+  {
+    'akinsho/toggleterm.nvim',
+    version = "*",
+    opts = {},
+  },
+
+  -- scala support plugin
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "mfussenegger/nvim-dap",
+        config = function(self, opts)
+          -- Debug settings if you're using nvim-dap
+          local dap = require("dap")
+
+          dap.configurations.scala = {
+            {
+              type = "scala",
+              request = "launch",
+              name = "RunOrTest",
+              metals = {
+                runType = "runOrTestFile",
+                --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+              },
+            },
+            {
+              type = "scala",
+              request = "launch",
+              name = "Test Target",
+              metals = {
+                runType = "testTarget",
+              },
+            },
+          }
+        end
+      },
+    },
+    event = "BufReadPre",
+    opts = function()
+      local metals_config = require("metals").bare_config()
+
+      metals_config.init_options.statusBarProvider = "off"
+
+      -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
+      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      metals_config.on_attach = function(client, bufnr)
+        require("metals").setup_dap()
+        -- your on_attach function
+        vim.keymap.set("n", "<leader>ws", function()
+          require("metals").hover_worksheet()
+        end)
+      end
+
+      return metals_config
+    end,
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "scala", "sbt", "java" },
+        callback = function()
+          -- This line is key!
+          require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+      })
+    end,
+ },
+
+  -- notifications
+  {
+    "j-hui/fidget.nvim",
+    opts = {
+      -- options
+    },
+  },
+
+  -- AI tab completion
+  {
+    "Exafunction/windsurf.nvim",
+    -- event = 'BufEnter',
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+        "hrsh7th/nvim-cmp",
+    },
+    main = "codeium",
+    opts = {
+      virtual_text = {
+        enabled = true,
+      },
+    }
+  },
 }

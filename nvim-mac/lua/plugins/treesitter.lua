@@ -35,6 +35,7 @@ return {
         "yaml",
         "http",
         "earthfile",
+        "scala",
       },
       highlight = {
         enable = true,              -- Enable highlighting
@@ -59,5 +60,11 @@ return {
         enable = true
       }
     }
+  },
+
+  {
+    "ravsii/tree-sitter-d2",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    build = "make nvim-install",
   },
 }
