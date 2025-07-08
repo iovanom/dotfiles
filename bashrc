@@ -253,3 +253,11 @@ export PATH=$PATH:$GOPATH/bin/
 alias daynote='nvim $(date +%F).md'
 
 source ~/.private_env
+
+## make pbcopy alias for xclip
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+
+# buffalo completion
+[ -f ~/.buffalo_completion ] && source ~/.buffalo_completion

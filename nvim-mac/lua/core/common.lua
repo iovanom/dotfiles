@@ -1,8 +1,8 @@
 -- vim.go.python3_host_prog = '/usr/bin/python3'
 -- vim.go.python_host_prog = '/usr/bin/python'
 
-vim.opt.backupdir = '/Users/ivan/.vimbackup/'
-vim.opt.directory = '/Users/ivan/.vimswp/'
+vim.opt.backupdir = vim.fn.expand('~/.vimbackup/')
+vim.opt.directory = vim.fn.expand('~/.vimswp/')
 
 -- Better display for messages
 vim.opt.cmdheight = 2
@@ -28,7 +28,7 @@ vim.opt.expandtab = true
 
 -- Undo files
 vim.opt.undofile = true
-vim.opt.undodir = '/Users/ivan/.vimundo/'
+vim.opt.undodir = vim.fn.expand('~/.vimundo/')
 
 -- history
 vim.opt.history = 50
