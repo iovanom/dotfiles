@@ -8,7 +8,16 @@ return {
     tag = '0.1.8',
     dependencies = {
       'nvim-lua/plenary.nvim',
-
+      {
+        "kelly-lin/telescope-ag",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        -- cmd = { "Ag" },
+        opts = { cmd = { "ag", "-s" } },
+      },
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make',
+      }
     },
     opts = {
       defaults = {
@@ -41,6 +50,7 @@ return {
     },
     init = function()
       require('telescope').load_extension('ag')
+      require('telescope').load_extension('fzf')
 
       vim.keymap.set('n', '<leader>t', builtin.find_files, {})
       vim.keymap.set('n', '<leader><Space>', builtin.oldfiles, {})
@@ -54,11 +64,5 @@ return {
 
   },
 
-  {
-    "kelly-lin/telescope-ag",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    -- cmd = { "Ag" },
-    opts = { cmd = { "ag", "-s" } },
-  },
 }
 

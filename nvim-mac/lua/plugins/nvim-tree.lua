@@ -28,6 +28,9 @@ return {
       view = {
         adaptive_size = true,
       },
+      renderer = {
+        group_empty = true,
+      },
       on_attach = my_on_attach,
     },
     init = function()

@@ -17,7 +17,7 @@ return {
     }
   },
 
-  -- none-ls.nvim 
+  -- none-ls.nvim
   {
     'nvimtools/none-ls.nvim',
     dependencies = {
@@ -25,6 +25,7 @@ return {
     },
     config = function()
       local null_ls = require('null-ls')
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
       null_ls.setup({
         sources = {
           -- formatting
@@ -53,7 +54,7 @@ return {
         },
         diagnostic_on_save = {
         },
-        on_attach = function()
+        on_attach = function(client, bufnr)
           local opts = { noremap = true }
           vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
           vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -68,6 +69,7 @@ return {
           vim.keymap.set('n', '<space>t', require('telescope.builtin').treesitter, {})
 
 
+          vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format, {})
           vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
           vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {})
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
@@ -77,8 +79,49 @@ return {
           vim.keymap.set("n", "<leader>cl", vim.lsp.codelens.run, {})
 
           vim.lsp.inlay_hint.enable(true)
+
         end
       })
     end
-  }
+  },
+
+  -- scala support plugin
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    event = "BufReadPre",
+    opts = function()
+      local metals_config = require("metals").bare_config()
+
+      metals_config.init_options.statusBarProvider = "off"
+
+      -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
+      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      metals_config.on_attach = function(client, bufnr)
+        require("metals").setup_dap()
+        -- your on_attach function
+        vim.keymap.set("n", "<leader>ws", function()
+          require("metals").hover_worksheet()
+        end)
+      end
+
+      return metals_config
+    end,
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "scala", "sbt", "java" },
+        callback = function()
+          -- This line is key!
+          require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+      })
+    end,
+ },
+
 }
