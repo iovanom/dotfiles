@@ -67,3 +67,9 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 -- need for bufferline plugin
 vim.opt.termguicolors = true
+
+-- Set ignorecase
+vim.opt.ignorecase = true
+
+-- Set smartcase
+vim.opt.smartcase = true
