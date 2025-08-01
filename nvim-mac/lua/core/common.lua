@@ -69,7 +69,7 @@ vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.termguicolors = true
 
 -- Set ignorecase
-vim.opt.ignorecase = true
+vim.opt.ignorecase = false
 
 -- Set smartcase
 vim.opt.smartcase = true
