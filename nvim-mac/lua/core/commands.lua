@@ -1,3 +1,5 @@
+local helpers = require('core.helpers')
+
 vim.api.nvim_create_user_command("Cpadmin", ":!cpadmin <cfile> '%:p:h' <CR>", {})
 
 -- Close all buffers except the current one
@@ -13,3 +15,10 @@ vim.api.nvim_create_user_command('OnlyCurrent', function()
 end, {
   desc = "Close all buffers except the current one",
 })
+
+vim.api.nvim_create_user_command('JQCopy', "!jq -c . % | jq -Rs | pbcopy", {})
+
+
+vim.api.nvim_create_user_command('CopyFileName', function()
+  helpers.copy_filename_without_extension()
+end, { nargs = 0 })

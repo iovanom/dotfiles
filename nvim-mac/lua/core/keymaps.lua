@@ -10,6 +10,7 @@ vim.keymap.set('n', '<leader>;', ',', { noremap = true })
 vim.keymap.set('n', 'cp', ':let @"=expand("%")<cr>', { noremap = true })
 -- Copy to clipboard the file path
 vim.keymap.set('n', '<leader>cp', ':let @+=expand("%")<cr>', { noremap = true })
+vim.keymap.set('n', '<leader>cf', ':CopyFileName<cr>', { noremap = true })
 
 -- Copy to clipboard
 vim.keymap.set('v', '<leader>y', '"+y', { noremap = true })
