@@ -48,8 +48,8 @@ style = "Regular"
 family = "Hack Nerd Font Mono"
 
 [font.offset]
-x = 0
-y = 0
+x = 1
+y = 1
 
 [[keyboard.bindings]]
 action = "Paste"

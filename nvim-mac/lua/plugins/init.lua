@@ -9,6 +9,15 @@ return {
   -- Colorschemes
   {
     'ellisonleao/gruvbox.nvim',
+    priority = 100,
+    opts = {
+      terminal_colors = true,
+      bold = false,
+      palette_overrides = {
+        --bright_green = "#4ab300",
+      }
+    },
+    config = true,
     init = function()
       vim.o.background = 'dark'
 
