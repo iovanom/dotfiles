@@ -36,6 +36,7 @@ return {
         "http",
         "earthfile",
         "scala",
+        "latex",
       },
       highlight = {
         enable = true,              -- Enable highlighting
