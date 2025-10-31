@@ -104,6 +104,9 @@ return {
       metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       metals_config.on_attach = function(client, bufnr)
+        -- attach custom lsp keymaps
+        lsp_config.on_attach(client, bufnr)
+
         require("metals").setup_dap()
         -- your on_attach function
         vim.keymap.set("n", "<leader>ws", function()
