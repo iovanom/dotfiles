@@ -78,7 +78,7 @@ return {
 
   -- Miscellaneous Plugins
   'editorconfig/editorconfig-vim',
-  'skywind3000/asyncrun.vim',
+  --'skywind3000/asyncrun.vim',
 
   -- Markdown
   {
