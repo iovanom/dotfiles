@@ -151,10 +151,10 @@ return {
 
   -- Dap view
   {
-      "igorlfs/nvim-dap-view",
-      ---@module 'dap-view'
-      ---@type dapview.Config
-      opts = {},
+    "igorlfs/nvim-dap-view",
+    ---@module 'dap-view'
+    ---@type dapview.Config
+    opts = {},
   },
 
   -- mini.nvim
@@ -227,18 +227,43 @@ return {
   },
 
   -- AI tab completion
-  {
-    "Exafunction/windsurf.nvim",
-    -- event = 'BufEnter',
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "hrsh7th/nvim-cmp",
-    },
-    main = "codeium",
-    opts = {
-      virtual_text = {
-        enabled = true,
-      },
-    }
-  },
+  --{
+  --  "Exafunction/windsurf.nvim",
+  --  -- event = 'BufEnter',
+  --  dependencies = {
+  --      "nvim-lua/plenary.nvim",
+  --      "hrsh7th/nvim-cmp",
+  --  },
+  --  main = "codeium",
+  --  opts = {
+  --    virtual_text = {
+  --      enabled = true,
+  --    },
+  --  }
+  --},
+  -- {
+  --   'huggingface/llm.nvim',
+  --   opts = {
+  --     -- cf Setup
+  --     model = "codellama:7b",
+  --     url = "http://localhost:11434", -- llm-ls uses "/api/generate"
+  --     backend = "ollama",
+  --     -- cf https://github.com/ollama/ollama/blob/main/docs/api.md#parameters
+  --     request_body = {
+  --       -- Modelfile options for the model you use
+  --       options = {
+  --         temperature = 0.2,
+  --         top_p = 0.95,
+  --       }
+  --     }
+  --   }
+  -- },
+  --{
+  --  'milanglacier/minuet-ai.nvim',
+  --  config = function()
+  --    require('minuet').setup {
+  --      provider = "claude",
+  --    }
+  --  end,
+  --},
 }

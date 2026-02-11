@@ -25,7 +25,7 @@ vim.keymap.set('n', '<leader>P', '"+P', { noremap = true })
 vim.keymap.set('n', '<leader>p', '"+p', { noremap = true })
 
 -- bufers keymaps
-vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
+--vim.keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 vim.keymap.set('n', '<leader>n', ':bnext<CR>')
 vim.keymap.set('n', '<leader>m', ':bprevious<CR>')
 vim.keymap.set('n', '<leader>x', ':bd<CR>')
