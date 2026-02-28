@@ -260,4 +260,4 @@ alias pbpaste='xclip -selection clipboard -o'
 
 
 # buffalo completion
-[ -f ~/.buffalo_completion ] && source ~/.buffalo_completion
+#[ -f ~/.buffalo_completion ] && source ~/.buffalo_completion
