@@ -9,6 +9,15 @@ return {
   -- Colorschemes
   {
     'ellisonleao/gruvbox.nvim',
+    priority = 100,
+    opts = {
+      terminal_colors = true,
+      bold = false,
+      palette_overrides = {
+        --bright_green = "#4ab300",
+      }
+    },
+    config = true,
     init = function()
       vim.o.background = 'dark'
 
@@ -69,14 +78,15 @@ return {
 
   -- Miscellaneous Plugins
   'editorconfig/editorconfig-vim',
-  'skywind3000/asyncrun.vim',
+  --'skywind3000/asyncrun.vim',
 
   -- Markdown
   {
     -- Make sure to set this up properly if you have lazy=true
     'MeanderingProgrammer/render-markdown.nvim',
     opts = {
-      file_types = { "markdown", "Avante", "mdc" },
+      -- file_types = { "markdown", "Avante", "mdc" },
+      file_types = { "Avante" },
     },
     ft = { "markdown", "Avante" },
   },
@@ -141,10 +151,10 @@ return {
 
   -- Dap view
   {
-      "igorlfs/nvim-dap-view",
-      ---@module 'dap-view'
-      ---@type dapview.Config
-      opts = {},
+    "igorlfs/nvim-dap-view",
+    ---@module 'dap-view'
+    ---@type dapview.Config
+    opts = {},
   },
 
   -- mini.nvim
@@ -158,16 +168,22 @@ return {
 
   {
     "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    opts = {
+      win = {
+        type = "split",
+        position="right",
+        size = { width = 75 }
+      }
+    }, -- for default options, refer to the configuration section for custom setup.
     cmd = "Trouble",
     keys = {
       {
-        "<leader>xx",
+        "<leader>cx",
         "<cmd>Trouble diagnostics toggle<cr>",
         desc = "Diagnostics (Trouble)",
       },
       {
-        "<leader>xX",
+        "<leader>cX",
         "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
         desc = "Buffer Diagnostics (Trouble)",
       },
@@ -211,18 +227,43 @@ return {
   },
 
   -- AI tab completion
-  {
-    "Exafunction/windsurf.nvim",
-    -- event = 'BufEnter',
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "hrsh7th/nvim-cmp",
-    },
-    main = "codeium",
-    opts = {
-      virtual_text = {
-        enabled = true,
-      },
-    }
-  },
+  --{
+  --  "Exafunction/windsurf.nvim",
+  --  -- event = 'BufEnter',
+  --  dependencies = {
+  --      "nvim-lua/plenary.nvim",
+  --      "hrsh7th/nvim-cmp",
+  --  },
+  --  main = "codeium",
+  --  opts = {
+  --    virtual_text = {
+  --      enabled = true,
+  --    },
+  --  }
+  --},
+  -- {
+  --   'huggingface/llm.nvim',
+  --   opts = {
+  --     -- cf Setup
+  --     model = "codellama:7b",
+  --     url = "http://localhost:11434", -- llm-ls uses "/api/generate"
+  --     backend = "ollama",
+  --     -- cf https://github.com/ollama/ollama/blob/main/docs/api.md#parameters
+  --     request_body = {
+  --       -- Modelfile options for the model you use
+  --       options = {
+  --         temperature = 0.2,
+  --         top_p = 0.95,
+  --       }
+  --     }
+  --   }
+  -- },
+  --{
+  --  'milanglacier/minuet-ai.nvim',
+  --  config = function()
+  --    require('minuet').setup {
+  --      provider = "claude",
+  --    }
+  --  end,
+  --},
 }

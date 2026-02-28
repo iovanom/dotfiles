@@ -1,3 +1,5 @@
 plugged
 vim/view
 .venv
+
+lazy-lock.json
