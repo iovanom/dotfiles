@@ -36,6 +36,11 @@ return {
         "http",
         "earthfile",
         "scala",
+        -- Salesforce
+        "apex",
+        "soql",
+        "sosl",
+        "sflog",
         --"latex",
       },
       highlight = {

@@ -21,6 +21,7 @@ return {
     },
     opts = {
       defaults = {
+        path_display = { "shorten" },
         extensions = {
           fzf = {
             fuzzy = true, -- false will only do exact matching
@@ -59,6 +60,7 @@ return {
       end, {})
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
       vim.keymap.set('n', '<c-f>w', builtin.grep_string, {})
+      vim.keymap.set('n', '<c-f>s', builtin.git_status, {})
       vim.keymap.set('n', '\\', builtin.buffers, {})
     end
 
