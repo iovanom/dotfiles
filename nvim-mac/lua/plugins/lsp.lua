@@ -103,6 +103,11 @@ return {
       -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
       metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+      -- Disable file watcher registration to avoid Neovim 0.12 glob.lua URI parsing error
+      metals_config.capabilities.workspace = metals_config.capabilities.workspace or {}
+      metals_config.capabilities.workspace.didChangeWatchedFiles = metals_config.capabilities.workspace.didChangeWatchedFiles or {}
+      metals_config.capabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+
       metals_config.on_attach = function(client, bufnr)
         -- attach custom lsp keymaps
         lsp_config.on_attach(client, bufnr)

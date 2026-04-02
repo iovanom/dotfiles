@@ -45,7 +45,7 @@ return {
       },
       highlight = {
         enable = true,              -- Enable highlighting
-        disable = {},               -- Do not disable any languages by default
+        disable = { "markdown", "markdown_inline" }, -- Disabled due to Neovim 0.12.0 range bug
       },
       incremental_selection = {
         enable = true,
