@@ -1,11 +1,28 @@
+vim.filetype.add({
+  extension = {
+    d2 = function()
+      return "d2", function(bufnr)
+        vim.bo[bufnr].commentstring = "# %s"
+      end
+    end,
+  },
+})
+
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
+    'romus204/tree-sitter-manager.nvim',
     lazy = false,
-    main = 'nvim-treesitter.configs',
     opts = {
-      -- A list of parser names, or "all"
+      auto_install = true,
+      highlight = true,
+      languages = {
+        d2 = {
+          install_info = {
+            url = "https://github.com/ravsii/tree-sitter-d2",
+            use_repo_queries = true,
+          },
+        },
+      },
       ensure_installed = {
         "html",
         "svelte",
@@ -36,41 +53,13 @@ return {
         "http",
         "earthfile",
         "scala",
+        "d2",
         -- Salesforce
         "apex",
         "soql",
         "sosl",
         "sflog",
-        --"latex",
       },
-      highlight = {
-        enable = true,              -- Enable highlighting
-        disable = { "markdown", "markdown_inline" }, -- Disabled due to Neovim 0.12.0 range bug
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
-        },
-      },
-      indent = {
-        enable = true,              -- Enable indentation
-      },
-      -- Install parsers synchronously (only applied to `ensure_installed`)
-      sync_install = true,
-      auto_install = true,
-      folding = {
-        enable = true
-      }
-    }
-  },
-
-  {
-    "ravsii/tree-sitter-d2",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    build = "make nvim-install",
+    },
   },
 }

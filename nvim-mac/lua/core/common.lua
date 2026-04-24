@@ -49,8 +49,8 @@ vim.opt.lazyredraw = true
 -- Set the global fold method to use Treesitter
 vim.opt.foldmethod = 'expr'
 
--- Set the expression that Treesitter will use to determine folds
-vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+-- Use the built-in Neovim treesitter fold expression (replaces deprecated nvim_treesitter#foldexpr())
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
 -- Start with folds closed
 vim.opt.foldlevelstart = 99
